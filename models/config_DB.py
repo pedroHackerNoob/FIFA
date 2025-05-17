@@ -14,8 +14,8 @@ def conection_db():
     print(f'\nConectando a la base de datos: {database}\n')
 
     with engine.connect() as conn:
-        result = conn.execute(text("select * FROM jugador"))
         # print in row
+        result= conn.execute(text("select * FROM jugador"))
         print("-------------------------------------------------------------------------")
         print("id | nombre | pais | deporte | posicion |  rareza      | nivel | equipo ")
         print("-------------------------------------------------------------------------")
@@ -25,9 +25,15 @@ def conection_db():
         # print(result.all()) print all results in file
 
 def test():
+    with engine.connect() as conn:
+        resultxd = conn.execute(text("SHOW DATABASES;"))
+        print("\nmostrando base de datos...")
+        for row in resultxd:
+            print(row)
+        # print(resultxd.all())
     import sqlalchemy
 
     var = sqlalchemy.__version__
     print(f'version SQALCHEMY: {var}')
-conection_db()
-# test()
+# conection_db()
+test()
