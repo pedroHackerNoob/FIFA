@@ -1,6 +1,8 @@
 # SQLAlchemy imports
 from sqlalchemy import create_engine
 from sqlalchemy import text
+import Player as playerdb
+from views import texts_menu as text
 # credenciales
 user = "root"
 password = "kali"
@@ -8,21 +10,6 @@ database = "cartas_deportivas"
 port = "3306"
 type_db = "mysql"
 engine = create_engine(f'{type_db}+py{type_db}://{user}:{password}@localhost:{port}/{database}')
-
-#     conectar base de datos
-def conection_db():
-    print(f'\nConectando a la base de datos: {database}\n')
-
-    with engine.connect() as conn:
-        # print in row
-        result= conn.execute(text("SELECT * FROM jugador"))
-        print("-------------------------------------------------------------------------")
-        print("id | nombre | pais | deporte | posicion |  rareza      | nivel | equipo ")
-        print("-------------------------------------------------------------------------")
-        for row in result:
-            print(row)
-        print("-------------------------------------------------------------------------")
-        # print(result.all()) print all results in file
 
 # Create table: utilizar una sola vez
 def create_table():
@@ -99,19 +86,24 @@ create index idEquipo2
     on partido (idEquipo2);
 
         '''))
-
+    conn.commit()
 # test de conexion
-def test():
+def run_query():
     with engine.connect() as conn:
-        resultxd = conn.execute(text("SHOW DATABASES;"))
-        print("\nmostrando base de datos...")
-        for row in resultxd:
-            print(row)
-        # print(resultxd.all())
+
+        playerdb.info_players(engine, database, text)
     import sqlalchemy
 
     var = sqlalchemy.__version__
     print(f'version SQALCHEMY: {var}')
+def menu():
+    text.texts_menu()
+    option = 2
 
-conection_db()
-# test()
+    match option:
+        case 1:
+            # create_table()
+            print("xd")
+        case 2:
+            print("xd")
+run_query()
