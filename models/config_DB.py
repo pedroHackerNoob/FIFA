@@ -91,8 +91,6 @@ create index idEquipo2
 
 # test de conexion
 def run_version():
-    # with engine.connect() as conn:
-    #     print(query_result)  # Print or process the query result
     var = sqlalchemy.__version__
     print(f'version SQALchemy: {var}')
 def menu():
@@ -103,7 +101,7 @@ def menu():
         # create_table()
         print("xd")
     elif option == 1:
-        playerdb.info_players(engine, database, text)  # Removed text parameter
+        playerdb.info_players(engine, text)
 
 
     run_version()
