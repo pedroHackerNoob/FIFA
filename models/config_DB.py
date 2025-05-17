@@ -99,12 +99,11 @@ def menu():
     textm.texts_menu()
     option = 1
 
-    match option:
-        case 0:
-            # create_table()
-            print("xd")
-        case 1:
-            playerdb.info_players(engine, database, text)  # Removed text parameter
+    if option == 0:
+        # create_table()
+        print("xd")
+    elif option == 1:
+        playerdb.info_players(engine, database, text)  # Removed text parameter
 
 
     run_version()
