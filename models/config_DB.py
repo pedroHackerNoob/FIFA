@@ -24,5 +24,10 @@ def conection_db():
         print("-------------------------------------------------------------------------")
         # print(result.all()) print all results in file
 
+def test():
+    import sqlalchemy
 
-conection_db()
+    var = sqlalchemy.__version__
+    print(f'version SQALCHEMY: {var}')
+# conection_db()
+test()
