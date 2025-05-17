@@ -95,14 +95,16 @@ def run_version():
     print(f'version SQALchemy: {var}')
 def menu():
     textm.texts_menu()
-    option = 0
+    option = 2
 
     if option == 0:
         # create_table()
         print("test de conexion: \n")
     elif option == 1:
         playerdb.info_players(engine, text)
-
+    elif option == 2:
+        playerdb.update_player(engine, text)
+        playerdb.info_players(engine, text)
 
     run_version()
 menu()
