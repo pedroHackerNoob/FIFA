@@ -99,6 +99,8 @@ create index idEquipo2
     on partido (idEquipo2);
 
         '''))
+
+# test de conexion
 def test():
     with engine.connect() as conn:
         resultxd = conn.execute(text("SHOW DATABASES;"))
@@ -110,5 +112,6 @@ def test():
 
     var = sqlalchemy.__version__
     print(f'version SQALCHEMY: {var}')
+
 conection_db()
 # test()
