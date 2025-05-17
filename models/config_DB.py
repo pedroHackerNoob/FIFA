@@ -7,24 +7,22 @@ password = "kali"
 database = "cartas_deportivas"
 port = "3306"
 type_db = "mysql"
+engine = create_engine(f'{type_db}+py{type_db}://{user}:{password}@localhost:{port}/{database}')
+
 #     conectar base de datos
 def conection_db():
-    print(f'conectando a la base de datos {database}')
-    engine = create_engine(f'{type_db}+py{type_db}://{user}:{password}@localhost:{port}/{database}')
+    print(f'\nConectando a la base de datos: {database}\n')
 
     with engine.connect() as conn:
         result = conn.execute(text("select * FROM jugador"))
         # print in row
+        print("-------------------------------------------------------------------------")
+        print("id | nombre | pais | deporte | posicion |  rareza      | nivel | equipo ")
+        print("-------------------------------------------------------------------------")
         for row in result:
             print(row)
-        # print(result.all())
+        print("-------------------------------------------------------------------------")
+        # print(result.all()) print all results in file
 
-
-# test
-def test():
-    import sqlalchemy
-
-    var = sqlalchemy.__version__
-    print(f'version SQALCHEMY: {var}')
 
 conection_db()
