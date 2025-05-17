@@ -1,3 +1,4 @@
+from views import texts_menu as textm
 #     Mostrar jugadores
 def info_players( engine , text):
     with engine.connect() as conn:
@@ -10,17 +11,17 @@ def info_players( engine , text):
             print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
 def update_player(engine, text):
-
+    textm.player_update()
     with engine.connect() as conn:
-        id_jugador = 1
-        nombre = "miado"
+        id_jugador = "1"
+        nombre = input("nombre: ")
         pais = "test"
         deporte = "test"
-        posicion = "tes"
+        posicion = "test"
         rareza = "comun"
         nivel = "0"
         imagen = "test"
-        id_equipo = "1"
+        id_equipo = "2"
         # prompt
         conn.execute(
             text("""
@@ -48,4 +49,5 @@ def update_player(engine, text):
             }]
         )
 
+        # ejecutar cambios
         conn.commit()

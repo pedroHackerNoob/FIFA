@@ -17,3 +17,8 @@ def texts_menu():
     print("|\n| Home:\n|\t[1] Players info\n|\t[2] Update Player")
     print("|")
     print("==========================================================")
+# player update
+def player_update():
+    print("|Ingrese los siguientes valores en columnas\n")
+    print("==========================================================")
+
