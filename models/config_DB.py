@@ -1,8 +1,9 @@
 # SQLAlchemy imports
+import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy import text
 import Player as playerdb
-from views import texts_menu as text
+from views import texts_menu as textm
 # credenciales
 user = "root"
 password = "kali"
@@ -14,7 +15,7 @@ engine = create_engine(f'{type_db}+py{type_db}://{user}:{password}@localhost:{po
 # Create table: utilizar una sola vez
 def create_table():
     with engine.connect() as conn:
-        conn.execute(text('''
+        conn.execute(textm('''
         CREATE DATABASE IF NOT EXISTS cartas_deportivas;
 USE cartas_deportivas;
 
@@ -87,23 +88,24 @@ create index idEquipo2
 
         '''))
     conn.commit()
+
 # test de conexion
-def run_query():
-    with engine.connect() as conn:
-
-        playerdb.info_players(engine, database, text)
-    import sqlalchemy
-
+def run_version():
+    # with engine.connect() as conn:
+    #     print(query_result)  # Print or process the query result
     var = sqlalchemy.__version__
-    print(f'version SQALCHEMY: {var}')
+    print(f'version SQALchemy: {var}')
 def menu():
-    text.texts_menu()
-    option = 2
+    textm.texts_menu()
+    option = 1
 
     match option:
-        case 1:
+        case 0:
             # create_table()
             print("xd")
-        case 2:
-            print("xd")
-run_query()
+        case 1:
+            playerdb.info_players(engine, database, text)  # Removed text parameter
+
+
+    run_version()
+menu()
