@@ -29,5 +29,5 @@ def test():
 
     var = sqlalchemy.__version__
     print(f'version SQALCHEMY: {var}')
-# conection_db()
-test()
+conection_db()
+# test()
