@@ -2,6 +2,9 @@
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy import text
+# clear import
+import os
+import platform
 # models imports
 import Player as player_db
 import Stats as player_stats
@@ -16,9 +19,14 @@ database = "cartas_deportivas"
 port = "3306"
 type_db = "mysql"
 engine = create_engine(f'{type_db}+py{type_db}://{user}:{password}@localhost:{port}/{database}')
-
+# clear function
+def clear_terminal():
+    # Detecta el sistema operativo y ejecuta el comando adecuado
+    os.system('cls' if platform.system() == 'Windows' else 'clear')
+    textm.tyler()
 # SHOW
 def show():
+    clear_terminal()
     textm.show()
     option_show = 1
     if option_show == 1:
