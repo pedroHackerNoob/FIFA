@@ -55,7 +55,7 @@ def update():
 
 # CREATE
 def create():
-    create_option = 3
+    create_option = 4
     # match
     if create_option ==1:
         match_teams.create_match(engine, text)
@@ -66,6 +66,9 @@ def create():
     elif create_option ==3:
         player_db.create_player(engine, text)
         player_db.show_players(engine, text)
+    elif create_option ==4:
+        player_stats.create_stats(engine, text)
+        player_stats.show_stats(engine, text)
 
 
 #version
