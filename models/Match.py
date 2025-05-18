@@ -3,10 +3,10 @@ def show_match(engine, txt):
     with engine.connect() as conn:
         match = conn.execute(txt("SELECT * FROM partido"))
         print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        print("| SHOW all match info\n|")
+        print("| All matches:\n|")
         for row in match:
-            print(f'| ID_match: {row[0]} | fecha: {row[1]} | lugar: {row[2]} | equipo1: {row[3]} | equipo2: {row[4]} |')
-            print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            print(f'| ID_match: {row[0]} | date: {row[1]} | country: {row[2]} | visit: {row[3]} | local: {row[4]} |')
+            print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 # UPDATE
 def update_match(engine, text):
     with engine.connect() as conn:

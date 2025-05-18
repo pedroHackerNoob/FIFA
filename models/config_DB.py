@@ -19,6 +19,7 @@ engine = create_engine(f'{type_db}+py{type_db}://{user}:{password}@localhost:{po
 
 # SHOW
 def show():
+    textm.show()
     option_show = 1
     if option_show == 1:
         # # Match
@@ -78,23 +79,22 @@ def run_version():
 #     menu
 def menu():
     textm.texts_menu()
-    option = 3
-    if option == 0:
+    option = 1
         # create_table()
+    if option == 0:
         print("test de conexion: \n")
         db.create_table(engine,text)
         # SHOW
+    # SHOW
     elif option == 1:
         show()
-        # UPDATE
+    # UPDATE
     elif option == 2:
         update()
-        # CREATE
+    # CREATE
     elif option == 3:
         create()
-
-    # motrar tabla jugadores
-
+    # show version
     run_version()
 # MAIN
 menu()

@@ -19,7 +19,7 @@ def texts_menu():
     print("==========================================================")
 # SHOW
 def show():
-    print("| Mostrando todos los registros")
+    print("|\t[1] SHOW MATCHES\n|\t[2] SHOW TEAMS\n|\t[3] SHOW PLAYERS\n|\t[4] SHOW PLAYERS STATS\n|")
 # UPDATE
 def update():
     print("|Ingrese los siguientes valores en columnas")
