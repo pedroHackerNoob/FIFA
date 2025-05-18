@@ -103,9 +103,9 @@ def create():
 
 #version
 def run_version():
+    ui_text.tyler()
     var = sqlalchemy.__version__
     console_r.rule(f"[bold red]version SQLAlchemy: {var}", align="center")
-    print(f'version SQALchemy: {var}')
 #     menu
 def menu():
     ui_text.tyler()
