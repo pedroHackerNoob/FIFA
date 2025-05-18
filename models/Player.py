@@ -54,9 +54,43 @@ def update_player(engine, text):
 # create player
 def create_player(engine, text):
     with engine.connect() as conn:
-        textm.create()
-        # create new player prompt
-        conn.execute(text(""))
+        nombre = "pollon"
+        pais = "test"
+        deporte = "test"
+        posicion = "test"
+        rareza = "comun"
+        nivel = "0"
+        imagen = "retirado"
+        id_equipo = "2"
 
-        # ejecutar comando
-        # conn.commit()
+        # create new player prompt
+        conn.execute(text('''
+                          INSERT INTO jugador (nombre
+                                              ,pais,
+                                               deporte,
+                                               posicion,
+                                               rareza,
+                                               nivel,
+                                               imagen,
+                                               idEquipo) 
+                             VALUES ( :nombre, 
+                                      :pais, 
+                                      :deporte, 
+                                      :posicion, 
+                                      :rareza, 
+                                      :nivel, 
+                                      :imagen, 
+                                      :idEquipo )'''),
+                              {
+                                 "nombre": nombre,
+                                 "pais": pais,
+                                 "deporte": deporte,
+                                 "posicion": posicion,
+                                 "rareza": rareza,
+                                 "nivel": nivel,
+                                 "imagen": imagen,
+                                 "idEquipo": id_equipo,
+                              }
+                          )
+        # made change
+        conn.commit()
