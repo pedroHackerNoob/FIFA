@@ -34,9 +34,9 @@ def show():
         player_stats.show_stats(engine, text)
 # UPDATE
 def update():
-    option_update = 4
+    option_update = 1
     if option_update ==1:
-        match_teams.create_match(engine, text)
+        match_teams.update_match(engine, text)
     elif option_update ==4:
         player_db.update_player(engine, text)
 # test de conexion
