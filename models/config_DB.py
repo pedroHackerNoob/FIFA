@@ -90,6 +90,7 @@ def run_version():
     print(f'version SQALchemy: {var}')
 #     menu
 def menu():
+    textm.tyler()
     textm.texts_menu()
     option = 1
         # create_table()
