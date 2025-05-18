@@ -55,11 +55,14 @@ def update():
 
 # CREATE
 def create():
-    create_option = 4
+    create_option = 2
     # match
     if create_option ==1:
         match_teams.create_match(engine, text)
         match_teams.show_match(engine, text)
+    elif create_option ==2:
+        team_players.create_team(engine, text)
+        team_players.show_teams(engine, text)
 #version
 def run_version():
     var = sqlalchemy.__version__
@@ -86,4 +89,3 @@ def menu():
 
     run_version()
 # Main
-update()

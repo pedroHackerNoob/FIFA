@@ -27,7 +27,17 @@ def update_team(engine, text):
 # CREATE
 def create_team(engine, text):
     with engine.connect() as conn:
-        nombre = "GG"
-        pais = "test"
-        # conn.execute(text('''INSERT INTO equipo (nombre, pais)
-        #                      VALUES ()'''))
+        nombre = "NRG"
+        pais = "Alemania"
+
+        conn.execute(text('''
+                          INSERT INTO equipo (nombre, pais)
+                             VALUES (:nombre, 
+                                     :pais)
+                          '''),
+                     {
+            "nombre": nombre,
+            "pais": pais
+        })
+        # made change
+        conn.commit()
