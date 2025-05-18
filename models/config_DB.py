@@ -6,6 +6,8 @@ from sqlalchemy import text
 import Player as player_db
 import Stats as player_stats
 from views import texts_menu as textm
+import Team as team_players
+
 # credenciales
 user = "root"
 password = "kali"
@@ -103,8 +105,14 @@ def menu():
         # create_table()
         print("test de conexion: \n")
     elif option == 1:
-        player_db.show_players(engine, text)
-        player_stats.show_stats(engine, text)
+        # SHOW
+        # # team
+        team_players.show_teams(engine, text)
+        # # Players
+        # player_db.show_players(engine, text)
+        # # Players stats
+        # player_stats.show_stats(engine, text)
+
     elif option == 2:
         player_db.update_player(engine, text)
     elif option == 3:
