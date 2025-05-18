@@ -1,2 +1,2 @@
 from models import config_DB as db
-db.menu()
+db.run_version()

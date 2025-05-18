@@ -125,4 +125,3 @@ def menu():
     # show version
     run_version()
 # MAIN
-menu()
