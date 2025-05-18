@@ -36,8 +36,11 @@ def show():
 def update():
     option_update = 1
     if option_update ==1:
+        #  Match
         match_teams.update_match(engine, text)
+        match_teams.show_match(engine, text)
     elif option_update ==4:
+        # # Plater Stats
         player_db.update_player(engine, text)
 # test de conexion
 def run_version():
@@ -46,7 +49,7 @@ def run_version():
 #     menu
 def menu():
     textm.texts_menu()
-    option = 1
+    option = 2
     if option == 0:
         # create_table()
         print("test de conexion: \n")

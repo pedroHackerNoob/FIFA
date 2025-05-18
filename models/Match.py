@@ -10,22 +10,29 @@ def show_match(engine, txt):
 # UPDATE
 def update_match(engine, text):
     with engine.connect() as conn:
-        id_Equipo = "2"
-        nombre = "RBG"
-        pais = "alemania"
+        id_partido = "1"
+        fecha = "2023-01-01"
+        lugar = "londres"
+        id_Equipo1 = "1"
+        id_Equipo2 = "2"
 
         # prompt
         conn.execute(
             text("""
-                 UPDATE equipo
-                 SET nombre   = :nombre,
-                     pais     = :pais,
-                 WHERE idEquipo = :idEquipo
+                 UPDATE partido
+                 SET fecha   = :fecha,
+                     lugar     = :lugar,
+                     idEquipo1 = :idEquipo1,
+                     idEquipo2 = :idEquipo2
+                     
+                 WHERE idpartido = :idpartido
                  """),
             [{
-                "nombre": nombre,
-                "pais": pais,
-                "idEquipo": id_Equipo,
+                "fecha": fecha,
+                "lugar": lugar,
+                "idEquipo1": id_Equipo1,
+                "idEquipo2": id_Equipo2,
+                "idpartido": id_partido
             }]
         )
 
