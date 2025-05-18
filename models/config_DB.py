@@ -28,7 +28,7 @@ def clear_terminal():
 def show():
     clear_terminal()
     textm.show()
-    option_show = input("Please enter your option:")
+    option_show = int(input("Please enter your option:"))
         # # Match
     if option_show == 1:
         clear_terminal()
