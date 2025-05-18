@@ -102,7 +102,8 @@ def menu():
         print("test de conexion: \n")
     elif option == 1:
         playerdb.update_player(engine, text)
-
+    elif option == 2:
+        playerdb.create_player(engine, text)
     # motrar tabla jugadores
     playerdb.info_players(engine, text)
 

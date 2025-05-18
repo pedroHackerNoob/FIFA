@@ -9,18 +9,18 @@ def info_players( engine , text):
         for row in result:
             print(f'| ID: {row[0]} | name: {row[1]} | country: {row[2]} | job: {row[3]} | position {row[4]} | top: {row[5]} | level: {row[6]} | txt: {row[7]} | TeamId: {row[8]} |')
             print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-
+# update plauer
 def update_player(engine, text):
-    textm.player_update()
+    textm.update_player()
     with engine.connect() as conn:
-        id_jugador = "1"
-        nombre = input("nombre: ")
+        id_jugador = "5"
+        nombre = input("|nombre: ")
         pais = "test"
         deporte = "test"
         posicion = "test"
         rareza = "comun"
         nivel = "0"
-        imagen = "test"
+        imagen = "retirado"
         id_equipo = "2"
         # prompt
         conn.execute(
@@ -51,3 +51,12 @@ def update_player(engine, text):
 
         # ejecutar cambios
         conn.commit()
+# create player
+def create_player(engine, text):
+    with engine.connect() as conn:
+        textm.create_player()
+        # create new player prompt
+        conn.execute(text(""))
+
+        # ejecutar comando
+        # conn.commit()

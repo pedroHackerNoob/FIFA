@@ -14,11 +14,14 @@ def tyler():
 def texts_menu():
     tyler()
     print("==========================================================")
-    print("|\n| Home:\n|\t[1] Players info\n|\t[2] Update Player")
+    print("|\n| Home:\n|\t[1] Players info\n|\t[2] Update Player\n|\t[3] Create Player\n|\t[4] Exit\n|")
     print("|")
     print("==========================================================")
 # player update
-def player_update():
+def update_player():
+    print("|Ingrese los siguientes valores en columnas")
+    print("==========================================================")
+# create player
+def create_player():
     print("|Ingrese los siguientes valores en columnas\n")
     print("==========================================================")
-
