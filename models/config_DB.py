@@ -6,12 +6,12 @@ from sqlalchemy import text
 import os
 import platform
 # models imports
-import Player as player_db
-import Stats as player_stats
+from models import Player as player_db
+from models import Stats as player_stats
 from views import texts_menu as ui_text
-import Team as team_players
-import Match as match_teams
-import DataBase as db
+from models import Team as team_players
+from models import Match as match_teams
+from models import DataBase as db
 # credenciales
 user = "root"
 password = "kali"
