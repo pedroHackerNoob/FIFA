@@ -1,17 +1,17 @@
 from views import texts_menu as textm
 #     Mostrar jugadores
-def info_players( engine , text):
+def show_players(engine, text):
     with engine.connect() as conn:
         # print in row
         result= conn.execute(text("SELECT * FROM jugador"))
         print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        print("| All players info\n|")
+        print("| SHOW all players info\n|")
         for row in result:
-            print(f'| ID: {row[0]} | name: {row[1]} | country: {row[2]} | job: {row[3]} | position {row[4]} | top: {row[5]} | level: {row[6]} | txt: {row[7]} | TeamId: {row[8]} |')
+            print(f'| ID_player: {row[0]} | name: {row[1]} | country: {row[2]} | job: {row[3]} | position {row[4]} | top: {row[5]} | level: {row[6]} | txt: {row[7]} | TeamId: {row[8]} |')
             print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 # update plauer
 def update_player(engine, text):
-    textm.update_player()
+    textm.update()
     with engine.connect() as conn:
         id_jugador = "5"
         nombre = input("|nombre: ")
@@ -54,7 +54,7 @@ def update_player(engine, text):
 # create player
 def create_player(engine, text):
     with engine.connect() as conn:
-        textm.create_player()
+        textm.create()
         # create new player prompt
         conn.execute(text(""))
 
