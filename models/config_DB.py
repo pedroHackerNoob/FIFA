@@ -97,4 +97,4 @@ def menu():
 
     run_version()
 # MAIN
-create()
+menu()
