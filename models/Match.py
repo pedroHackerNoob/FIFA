@@ -40,7 +40,6 @@ def update_match(engine, text):
         conn.commit()
 # CREATE
 def create_match(engine, text):
-    print("test de conexion: \n")
     with engine.connect() as conn:
         fecha = "2023-01-02"
         lugar = "alemania"
