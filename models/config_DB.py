@@ -2,6 +2,9 @@
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy import text
+# rich
+from rich.console import Console
+console_r = Console()
 # clear import
 import os
 import platform
@@ -101,6 +104,7 @@ def create():
 #version
 def run_version():
     var = sqlalchemy.__version__
+    console_r.rule(f"[bold red]version SQLAlchemy: {var}", align="center")
     print(f'version SQALchemy: {var}')
 #     menu
 def menu():
