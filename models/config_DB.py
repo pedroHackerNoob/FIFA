@@ -7,7 +7,7 @@ import Player as player_db
 import Stats as player_stats
 from views import texts_menu as textm
 import Team as team_players
-
+import Match as match_teams
 # credenciales
 user = "root"
 password = "kali"
@@ -106,8 +106,10 @@ def menu():
         print("test de conexion: \n")
     elif option == 1:
         # SHOW
+        ## match
+        match_teams.show_match(engine, text)
         # # team
-        team_players.show_teams(engine, text)
+        # team_players.show_teams(engine, text)
         # # Players
         # player_db.show_players(engine, text)
         # # Players stats
