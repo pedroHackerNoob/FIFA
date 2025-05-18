@@ -29,17 +29,21 @@ def show():
     clear_terminal()
     textm.show()
     option_show = 1
-    if option_show == 1:
         # # Match
+    if option_show == 1:
+        clear_terminal()
         match_teams.show_match(engine, text)
-    elif option_show == 2:
         # # Team
+    elif option_show == 2:
+        clear_terminal()
         team_players.show_teams(engine, text)
-    elif option_show == 3:
         # # Players
+    elif option_show == 3:
+        clear_terminal()
         player_db.show_players(engine, text)
-    elif option_show == 4:
         # # Players stats
+    elif option_show == 4:
+        clear_terminal()
         player_stats.show_stats(engine, text)
 
 # UPDATE
