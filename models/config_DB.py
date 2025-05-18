@@ -35,24 +35,31 @@ def show():
 
 # UPDATE
 def update():
-    option_update = 1
+    option_update = 2
+    #  Match
     if option_update ==1:
-        #  Match
         match_teams.update_match(engine, text)
         match_teams.show_match(engine, text)
-    elif option_update ==4:
-        # # Plater Stats
+    # Team
+    elif option_update ==2:
+        team_players.update_team(engine, text)
+        team_players.show_teams(engine, text)
+    # Players
+    elif option_update ==3:
         player_db.update_player(engine, text)
+        player_db.show_players(engine, text)
+    # # Plater Stats
+    elif option_update ==4:
+        player_stats.update_stats(engine, text)
+        player_stats.show_stats(engine, text)
 
 # CREATE
 def create():
     create_option = 4
+    # match
     if create_option ==1:
-        print("test de conexion: \n")
-    elif create_option ==4:
         match_teams.create_match(engine, text)
         match_teams.show_match(engine, text)
-
 #version
 def run_version():
     var = sqlalchemy.__version__
@@ -78,4 +85,5 @@ def menu():
     # motrar tabla jugadores
 
     run_version()
-create()
+# Main
+update()
