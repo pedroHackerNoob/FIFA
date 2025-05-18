@@ -2,7 +2,9 @@
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy import text
-import Player as playerdb
+# models imports
+import Player as player_db
+import Stats as player_stats
 from views import texts_menu as textm
 # credenciales
 user = "root"
@@ -101,11 +103,14 @@ def menu():
         # create_table()
         print("test de conexion: \n")
     elif option == 1:
-        playerdb.update_player(engine, text)
+        player_db.show_players(engine, text)
+        player_stats.show_stats(engine, text)
     elif option == 2:
-        playerdb.create_player(engine, text)
+        player_db.update_player(engine, text)
+    elif option == 3:
+        player_stats.create_stats(engine, text)
+
     # motrar tabla jugadores
-    playerdb.info_players(engine, text)
 
     run_version()
 menu()
