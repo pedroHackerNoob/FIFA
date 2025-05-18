@@ -2,7 +2,6 @@
 def show_match(engine, txt):
     with engine.connect() as conn:
         match = conn.execute(txt("SELECT * FROM partido"))
-        print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         print("| All matches:\n|")
         for row in match:
             print(f'| ID_match: {row[0]} | date: {row[1]} | country: {row[2]} | visit: {row[3]} | local: {row[4]} |')

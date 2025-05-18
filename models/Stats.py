@@ -4,8 +4,6 @@ from views import texts_menu as textm
 def show_stats(engine, text):
     with engine.connect() as conn:
         stats_players = conn.execute(text("SELECT * FROM estadisticas"))
-        # print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        print("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>")
         print("| SHOW all players stats info\n|")
         for row in stats_players:
             print(f'| ID_stats: {row[0]} | id_player: {row[1]} | velocity: {row[2]} | strength: {row[3]} | technique {row[4]} | resistence: {row[5]} | intelligence: {row[6]} | skill: {row[7]} |')

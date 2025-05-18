@@ -12,7 +12,6 @@ def tyler():
     print("-----------------------------------------------------------------------------------------------------------------------------")
 # home
 def texts_menu():
-    print("==========================================================")
     print("|\n| Home:\n|\t[1] SHOW \n|\t[2] UPDATE \n|\t[3] CREATE\n|\t[4] Exit\n|")
     print("|")
     print("==========================================================")
@@ -21,9 +20,9 @@ def show():
     print("|\t[1] SHOW MATCHES\n|\t[2] SHOW TEAMS\n|\t[3] SHOW PLAYERS\n|\t[4] SHOW PLAYERS STATS\n|")
 # UPDATE
 def update():
-    print("|Ingrese los siguientes valores en columnas")
+    print("|\t[1] UPDATE MATCHES\n|\t[2] UPDATE TEAMS\n|\t[3] UPDATE PLAYERS\n|\t[4] UPDATE PLAYERS STATS\n|")
     print("==========================================================")
 # CREATE
 def create():
-    print("|Ingrese los siguientes valores en columnas\n")
+    print("|\t[1] CREATE MATCHES\n|\t[2] CREATE TEAMS\n|\t[3] CREATE PLAYERS\n|\t[4] CREATE PLAYERS STATS\n|")
     print("==========================================================")
