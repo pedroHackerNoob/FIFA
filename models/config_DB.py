@@ -122,9 +122,10 @@ def test():
 
     if option == "demo":
         while True:
-            ui_text.run_version(sqlalchemy.__version__)
+            clear_terminal()
             menu()
             if not break_or_continue():
+                ui_text.run_version(sqlalchemy.__version__)
                 break
 
     elif option == "banner":
