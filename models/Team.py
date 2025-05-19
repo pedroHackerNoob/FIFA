@@ -9,9 +9,9 @@ def show_teams(engine, text):
 # UPDATE
 def update_team(engine, text):
     with engine.connect() as conn:
-        id_equipo = "2"
-        nombre = "GG"
-        pais = "Brazil"
+        id_equipo = int(input("| Enter id_team: "))
+        nombre = input("| Enter name")
+        pais = input("| Enter country")
         conn.execute(text("""
                           UPDATE equipo 
                           SET nombre = :nombre,
@@ -26,8 +26,8 @@ def update_team(engine, text):
 # CREATE
 def create_team(engine, text):
     with engine.connect() as conn:
-        nombre = "NRG"
-        pais = "Alemania"
+        nombre = input("| Enter name: ")
+        pais = input("| Enter country: ")
 
         conn.execute(text('''
                           INSERT INTO equipo (nombre, pais)
