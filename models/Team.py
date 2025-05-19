@@ -39,6 +39,7 @@ def update_team(engine, text):
     show_teams(engine, text)
 # CREATE
 def create_team(engine, text):
+    show_teams(engine, text)
     with engine.connect() as conn:
         nombre = input("| Enter name: ")
         pais = input("| Enter country: ")
@@ -54,3 +55,4 @@ def create_team(engine, text):
         })
         # made change
         conn.commit()
+    show_teams(engine, text)
