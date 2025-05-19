@@ -110,22 +110,28 @@ def run_version():
 def menu():
     ui_text.tyler()
     ui_text.texts_menu()
-    option = int(input("Please enter your option:"))
+    option = int(input())
     # option = 3
         # create_table()
     if option == 0:
         print("test de conexion: \n")
-        db.create_table(engine,text)
+        # db.create_table(engine,text)
         # SHOW
     # SHOW
     elif option == 1:
+        clear_terminal()
         show()
     # UPDATE
     elif option == 2:
+        clear_terminal()
         update()
     # CREATE
     elif option == 3:
+        clear_terminal()
         create()
     # show version
     run_version()
 # MAIN
+
+def test():
+    menu()
