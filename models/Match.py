@@ -61,6 +61,8 @@ def update_match(engine, text):
     show_match(engine, text)
 # CREATE
 def create_match(engine, text):
+    show_match(engine, text)
+    print("| Enter date: ", datetime)
     with engine.connect() as conn:
         fecha = datetime
         lugar = input("| Enter place: ")
@@ -87,3 +89,4 @@ def create_match(engine, text):
         )
         # made action
         conn.commit()
+        show_match(engine, text)

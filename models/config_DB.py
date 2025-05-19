@@ -66,9 +66,7 @@ def create():
     create_option = int(input())
     # match
     if create_option ==1:
-        match_teams.show_match(engine, text)
         match_teams.create_match(engine, text)
-        match_teams.show_match(engine, text)
     # Team
     elif create_option ==2:
         team_players.show_teams(engine, text)
