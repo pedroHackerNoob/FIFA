@@ -134,7 +134,6 @@ def test():
     while True:
         clear_terminal()
         ui_text.run_version(sqlalchemy.__version__)
-        # menu()
-        break
-        # if not break_or_continue():
-        #     break
+        menu()
+        if not break_or_continue():
+            break
