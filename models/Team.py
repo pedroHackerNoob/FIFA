@@ -3,6 +3,10 @@ from rich.table import Table
 console_r = Console()
 from views import texts_menu as textm
 def show_teams(engine, text):
+    import time
+    from tqdm import tqdm
+    for i in tqdm(range(50)):
+        time.sleep(0.01)
     with engine.connect() as conn:
         team = conn.execute(text("SELECT * FROM equipo"))
 
@@ -16,6 +20,7 @@ def show_teams(engine, text):
         console_r.print(table)
 # UPDATE
 def update_team(engine, text):
+    show_teams(engine, text)
     with engine.connect() as conn:
         id_equipo = int(input("| Enter id_team: "))
         nombre = input("| Enter name: ")
@@ -31,6 +36,7 @@ def update_team(engine, text):
         })
         # made change
         conn.commit()
+    show_teams(engine, text)
 # CREATE
 def create_team(engine, text):
     with engine.connect() as conn:
