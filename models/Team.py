@@ -10,8 +10,8 @@ def show_teams(engine, text):
 def update_team(engine, text):
     with engine.connect() as conn:
         id_equipo = int(input("| Enter id_team: "))
-        nombre = input("| Enter name")
-        pais = input("| Enter country")
+        nombre = input("| Enter name: ")
+        pais = input("| Enter country: ")
         conn.execute(text("""
                           UPDATE equipo 
                           SET nombre = :nombre,

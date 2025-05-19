@@ -52,18 +52,22 @@ def update():
     option_update = int(input())
     #  Match
     if option_update ==1:
+        match_teams.show_match(engine, text)
         match_teams.update_match(engine, text)
         match_teams.show_match(engine, text)
     # Team
     elif option_update ==2:
+        team_players.show_teams(engine, text)
         team_players.update_team(engine, text)
         team_players.show_teams(engine, text)
     # Players
     elif option_update ==3:
+        match_teams.show_match(engine, text)
         player_db.update_player(engine, text)
         player_db.show_players(engine, text)
     # # Plater Stats
     elif option_update ==4:
+        match_teams.show_match(engine, text)
         player_stats.update_stats(engine, text)
         player_stats.show_stats(engine, text)
 

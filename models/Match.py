@@ -1,3 +1,6 @@
+import datetime
+
+datetime = datetime.datetime.now()
 # READ
 def show_match(engine, txt):
     with engine.connect() as conn:
@@ -9,11 +12,11 @@ def show_match(engine, txt):
 # UPDATE
 def update_match(engine, text):
     with engine.connect() as conn:
-        id_partido = "1"
-        fecha = "2023-01-01"
-        lugar = "londres"
-        id_equipo1 = "1"
-        id_equipo2 = "2"
+        id_partido = int(input("| Enter id_match: "))
+        fecha = datetime
+        lugar = input("| Enter place: ")
+        id_equipo1 = int(input("| Enter id_team visitors: "))
+        id_equipo2 = int(input("| Enter id_team locals: "))
 
         # prompt
         conn.execute(
@@ -40,7 +43,7 @@ def update_match(engine, text):
 # CREATE
 def create_match(engine, text):
     with engine.connect() as conn:
-        fecha = "2023-01-02"
+        fecha = datetime
         lugar = input("| Enter place: ")
         id_equipo1 = int(input("| Enter id_team visitors: "))
         id_equipo2 = int(input("| Enter id_team locals: "))
