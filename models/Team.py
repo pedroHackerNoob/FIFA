@@ -1,11 +1,19 @@
+from rich.console import Console
+from rich.table import Table
+console_r = Console()
 from views import texts_menu as textm
 def show_teams(engine, text):
     with engine.connect() as conn:
         team = conn.execute(text("SELECT * FROM equipo"))
-        print("| SHOW all teams info\n|")
+
+        table = Table(title="All teams", show_header=True, header_style="bold magenta", show_lines=True)
+        table.add_column("ID_team", style="bright_blue")
+        table.add_column("name", style="cyan")
+        table.add_column("country", style="bright_white")
+        # impor_table.Table
         for row in team:
-            print(f'| ID_team: {row[0]} | name: {row[1]} | country: {row[2]} |')
-            print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            table.add_row(str(row[0]), str(row[1]), str(row[2]))
+        console_r.print(table)
 # UPDATE
 def update_team(engine, text):
     with engine.connect() as conn:

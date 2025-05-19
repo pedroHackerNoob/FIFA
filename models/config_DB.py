@@ -5,12 +5,13 @@ from sqlalchemy import text
 # rich
 import rich
 from rich.console import Console
+from rich.table import Table
 console_r = Console()
 # clear import
 import os
 import platform
 # models imports
-from models import Player as player_db
+from models import Player as player
 from models import Stats as player_stats
 from views import texts_menu as ui_text
 from models import Team as team_players
@@ -39,7 +40,7 @@ def show():
         team_players.show_teams(engine, text)
         # # Players
     elif option_show == 3:
-        player_db.show_players(engine, text)
+        player.show_players(engine, text)
         # # Players stats
     elif option_show == 4:
         player_stats.show_stats(engine, text)
@@ -62,8 +63,8 @@ def update():
     # Players
     elif option_update ==3:
         match_teams.show_match(engine, text)
-        player_db.update_player(engine, text)
-        player_db.show_players(engine, text)
+        player.update_player(engine, text)
+        player.show_players(engine, text)
     # # Plater Stats
     elif option_update ==4:
         match_teams.show_match(engine, text)
@@ -86,9 +87,9 @@ def create():
         team_players.show_teams(engine, text)
     # Player
     elif create_option ==3:
-        player_db.show_players(engine, text)
-        player_db.create_player(engine, text)
-        player_db.show_players(engine, text)
+        player.show_players(engine, text)
+        player.create_player(engine, text)
+        player.show_players(engine, text)
     # Stats
     elif create_option ==4:
         player_stats.show_stats(engine, text)
@@ -134,12 +135,13 @@ def test():
 
     if option == "demo":
         while True:
-            clear_terminal()
             ui_text.run_version(sqlalchemy.__version__)
-            # menu()
+            menu()
             if not break_or_continue():
                 break
 
     elif option == "banner":
-        # clear_terminal()
-        print("xd")
+        match_teams.show_match(engine, text)
+        team_players.show_teams(engine, text)
+        player.show_players(engine, text)
+        player_stats.show_stats(engine, text)

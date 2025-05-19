@@ -1,17 +1,27 @@
+
 # Date time
 import datetime
 datetime = datetime.datetime.now()
 # rich
 from rich.console import Console
+from rich.table import Table
 console_r = Console()
 # READ
 def show_match(engine, txt):
     with engine.connect() as conn:
         match = conn.execute(txt("SELECT * FROM partido"))
-        print("| All matches:\n|")
+
+        table = Table(title="All matches", show_header=True, header_style="bold magenta", show_lines=True)
+
+        table.add_column("ID_match", style="bright_blue")
+        table.add_column("date", style="cyan")
+        table.add_column("country", style="bright_white")
+        table.add_column("visitors ID", style="green", justify="center")
+        table.add_column("locals ID", style="red", justify="center")
+        # impor_table.Table
         for row in match:
-            print(f'| ID_match: {row[0]} | date: {row[1]} | country: {row[2]} | visit: {row[3]} | local: {row[4]} |')
-            print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            table.add_row(str(row[0]), str(row[1]), str(row[2]), str(row[3]), str(row[4]))
+        console_r.print(table)
 # UPDATE
 def update_match(engine, text):
     with engine.connect() as conn:
