@@ -73,18 +73,22 @@ def create():
     create_option = int(input())
     # match
     if create_option ==1:
+        match_teams.show_match(engine, text)
         match_teams.create_match(engine, text)
         match_teams.show_match(engine, text)
     # Team
     elif create_option ==2:
+        team_players.show_teams(engine, text)
         team_players.create_team(engine, text)
         team_players.show_teams(engine, text)
     # Player
     elif create_option ==3:
+        player_db.show_players(engine, text)
         player_db.create_player(engine, text)
         player_db.show_players(engine, text)
     # Stats
     elif create_option ==4:
+        player_stats.show_stats(engine, text)
         player_stats.create_stats(engine, text)
         player_stats.show_stats(engine, text)
 

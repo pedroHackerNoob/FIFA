@@ -41,9 +41,9 @@ def update_match(engine, text):
 def create_match(engine, text):
     with engine.connect() as conn:
         fecha = "2023-01-02"
-        lugar = "alemania"
-        id_equipo1 = "2"
-        id_equipo2 = "1"
+        lugar = input("| Enter place: ")
+        id_equipo1 = int(input("| Enter id_team visitors: "))
+        id_equipo2 = int(input("| Enter id_team locals: "))
 
         conn.execute(
             text("""

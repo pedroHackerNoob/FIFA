@@ -54,13 +54,13 @@ def update_player(engine, text):
 def create_player(engine, text):
     with engine.connect() as conn:
         nombre = input("| Enter name: ")
-        pais = input("| Enter country")
-        deporte = input("| Enter deport")
-        posicion = input("| position")
-        rareza = input("Enter rarely")
-        nivel = int(input("| Enter level:"))
-        imagen = input("| Enter image")
-        id_equipo = int(input("| Enter id_team:"))
+        pais = input("| Enter country: ")
+        deporte = input("| Enter deport: ")
+        posicion = input("| position: ")
+        rareza = input("| Enter rarely: ")
+        nivel = int(input("| Enter level: "))
+        imagen = input("| Enter image: " )
+        id_equipo = int(input("| Enter id_team: "))
 
         # create new player prompt
         conn.execute(text('''
