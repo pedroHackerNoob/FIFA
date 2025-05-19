@@ -1,6 +1,11 @@
 from views import texts_menu as textm
 #     Mostrar jugadores
 def show_players(engine, text):
+    import time
+    from tqdm import tqdm
+    for i in tqdm(range(50)):
+        time.sleep(0.01)
+
     with engine.connect() as conn:
         players = conn.execute(text("SELECT * FROM jugador"))
 
@@ -36,17 +41,17 @@ def show_players(engine, text):
         console_r.print(table)
 # update plauer
 def update_player(engine, text):
-    textm.update()
+    show_players(engine, text)
     with engine.connect() as conn:
         id_jugador = int(input("| Enter id_player: "))
         nombre = input("| Enter name: ")
         pais = input("| Enter country")
-        deporte = input("| Enter deport")
-        posicion = input("| position")
-        rareza = input("Enter rarely")
+        deporte = input("| Enter sport: ")
+        posicion = input("| Enter position")
+        rareza = input("| Enter rarely: ")
         nivel = int(input("| Enter level:"))
-        imagen = input("| Enter image")
-        id_equipo = int(input("| Enter id_team:"))
+        imagen = input("| Enter image: ")
+        id_equipo = int(input("| Enter id_team: "))
         # prompt
         conn.execute(
             text("""
@@ -76,6 +81,7 @@ def update_player(engine, text):
 
         # ejecutar cambios
         conn.commit()
+    show_players(engine, text)
 # create player
 def create_player(engine, text):
     with engine.connect() as conn:
