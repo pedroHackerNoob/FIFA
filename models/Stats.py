@@ -14,25 +14,23 @@ def show_stats(engine, text):
 def create_stats(engine, text):
 
     with engine.connect() as conn:
-        id_jugador = "5"
-        velocidad = "10"
-        fuerza = "10"
-        tecnica = "10"
-        resistencia = "10"
-        inteligencia = "10"
-        # habilidades = input("| Ingrese habilidad")
-        habilidades = "maniaco"
+        velocidad = int(input("| Enter velocity: "))
+        fuerza = int(input("| Enter strength: "))
+        tecnica = int(input("| Enter technique: "))
+        resistencia = int(input("| Enter resistence: "))
+        inteligencia = int(input("| Enter intelligence: "))
+        habilidades = input("| Enter skill:")
         # prompt
         conn.execute(
             text("""
-                 INSERT INTO estadisticas (idJugador, 
+                 INSERT INTO estadisticas ( 
                                            velocidad, 
                                            fuerza, 
                                            tecnica, 
                                            resistencia, 
                                            inteligencia, 
                                            habilidades) 
-                 VALUES ( :idJugador, 
+                 VALUES (  
                           :velocidad, 
                           :fuerza, 
                           :tecnica, 
@@ -41,7 +39,7 @@ def create_stats(engine, text):
                           :habilidades)
                  """),
             [{
-                "idJugador": id_jugador,
+
                 "velocidad": velocidad,
                 "fuerza": fuerza,
                 "tecnica": tecnica,
@@ -53,3 +51,34 @@ def create_stats(engine, text):
 
         # ejecutar cambios
         conn.commit()
+
+
+def update_stats(engine, text):
+    with engine.connect() as conn:
+        id_jugador = int(input("| Enter id_player: "))
+        velocidad = int(input("| Enter velocity: "))
+        fuerza = int(input("| Enter strength: "))
+        tecnica = int(input("| Enter technique: "))
+        resistencia = int(input("| Enter resistence: "))
+        inteligencia = int(input("| Enter intelligence: "))
+        habilidades = input("| Enter skill:")
+
+        conn.execute(text('''
+                          UPDATE estadisticas 
+                          SET velocidad = :velocidad, 
+                              fuerza =:fuerza, 
+                              tecnica = :tecnica, 
+                              resistencia = :resistencia, 
+                              inteligencia = :inteligencia, 
+                              habilidades = :habilidades
+                              
+                              WHERE idJugador = :idJugador
+                          '''),{
+            "velocidad": velocidad,
+            "fuerza": fuerza,
+            "tecnica": tecnica,
+            "resistencia": resistencia,
+            "inteligencia": inteligencia,
+            "habilidades": habilidades,
+            "idJugador": id_jugador
+        })
