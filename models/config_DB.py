@@ -31,73 +31,60 @@ def clear_terminal():
 def show():
     clear_terminal()
     ui_text.show()
-    option_show = int(input("Please enter your option:"))
+    option_show = int(input())
         # # Match
     if option_show == 1:
-        clear_terminal()
         match_teams.show_match(engine, text)
         # # Team
     elif option_show == 2:
-        clear_terminal()
         team_players.show_teams(engine, text)
         # # Players
     elif option_show == 3:
-        clear_terminal()
         player_db.show_players(engine, text)
         # # Players stats
     elif option_show == 4:
-        clear_terminal()
         player_stats.show_stats(engine, text)
 
 # UPDATE
 def update():
     clear_terminal()
     ui_text.update()
-    option_update = int(input("Please enter your option:"))
+    option_update = int(input())
     #  Match
     if option_update ==1:
-        clear_terminal()
         match_teams.update_match(engine, text)
         match_teams.show_match(engine, text)
     # Team
     elif option_update ==2:
-        clear_terminal()
         team_players.update_team(engine, text)
         team_players.show_teams(engine, text)
     # Players
     elif option_update ==3:
-        clear_terminal()
         player_db.update_player(engine, text)
         player_db.show_players(engine, text)
     # # Plater Stats
     elif option_update ==4:
-        clear_terminal()
         player_stats.update_stats(engine, text)
         player_stats.show_stats(engine, text)
 
 # CREATE
 def create():
-    clear_terminal()
     ui_text.create()
-    create_option = int(input("Please enter your option:"))
+    create_option = int(input())
     # match
     if create_option ==1:
-        clear_terminal()
         match_teams.create_match(engine, text)
         match_teams.show_match(engine, text)
     # Team
     elif create_option ==2:
-        clear_terminal()
         team_players.create_team(engine, text)
         team_players.show_teams(engine, text)
     # Player
     elif create_option ==3:
-        clear_terminal()
         player_db.create_player(engine, text)
         player_db.show_players(engine, text)
     # Stats
     elif create_option ==4:
-        clear_terminal()
         player_stats.create_stats(engine, text)
         player_stats.show_stats(engine, text)
 
