@@ -19,15 +19,13 @@ from models import DataBase as db
 # credenciales
 user = "root"
 password = "kali"
-database = "cartas_deportivas"
 port = "3306"
-type_db = "mysql"
-engine = create_engine(f'{type_db}+py{type_db}://{user}:{password}@localhost:{port}/{database}')
+engine = create_engine(f'mysql+pymysql://{user}:{password}@localhost:{port}/cartas_deportivas')
 # clear function
 def clear_terminal():
     # Detecta el sistema operativo y ejecuta el comando adecuado
     os.system('cls' if platform.system() == 'Windows' else 'clear')
-    ui_text.tyler()
+    ui_text.fifa_lxs()
 # SHOW
 def show():
     clear_terminal()
@@ -98,6 +96,7 @@ def create():
         player_stats.show_stats(engine, text)
 #     menu
 def menu():
+
     ui_text.texts_menu()
     option = int(input())
     # option = 3
@@ -120,7 +119,7 @@ def menu():
         create()
 # bucle
 def break_or_continue():
-    option = input("Enter [B]reak or [C]ontinue: ")
+    option = console_r.input("[black on bright_yellow]Enter [B]reak or [C]ontinue: ")
     if option.lower() == "b":
         return False
     elif option.lower() == "c":
@@ -130,10 +129,17 @@ def break_or_continue():
         return break_or_continue()
 # MAIN
 def test():
-    # menu()
-    while True:
-        clear_terminal()
-        ui_text.run_version(sqlalchemy.__version__)
-        menu()
-        if not break_or_continue():
-            break
+    clear_terminal()
+    option = "banner"
+
+    if option == "demo":
+        while True:
+            clear_terminal()
+            ui_text.run_version(sqlalchemy.__version__)
+            # menu()
+            if not break_or_continue():
+                break
+
+    elif option == "banner":
+        # clear_terminal()
+        print("xd")

@@ -1,6 +1,9 @@
+# Date time
 import datetime
-
 datetime = datetime.datetime.now()
+# rich
+from rich.console import Console
+console_r = Console()
 # READ
 def show_match(engine, txt):
     with engine.connect() as conn:

@@ -1,14 +1,26 @@
 from models.config_DB import console_r
 # banner
-def tyler():
+def fifa_lxs():
     console_r.rule(characters="-",style="bright_white")
-    console_r.print('''[bright_green]  ::::::::::::::   ::::::       :::::::::::::::::::          :::::::::::::::::::  :::::::: :::       :::::::: 
-     :+:    :+:   :+::+:       :+:       :+:    :+:             :+:   :+:    :+::+:    :+::+:      :+:    :+: 
-    +:+     +:+ +:+ +:+       +:+       +:+    +:+             +:+   +:+    +:++:+    +:++:+      +:+         
-   +#+      +#++:  +#+       +#++:++#  +#++:++#:              +#+   +#+    +:++#+    +:++#+      +#++:++#++   
-  +#+       +#+   +#+       +#+       +#+    +#+             +#+   +#+    +#++#+    +#++#+             +#+    
- #+#       #+#   #+#       #+#       #+#    #+#             #+#   #+#    #+##+#    #+##+#      #+#    #+#     
-###       ###   #######################    #############   ###    ########  ######## ##################''')
+    console_r.print('''[bright_white] 
+FFFFFFFFFFFFFFFFFFFFFFIIIIIIIIIIFFFFFFFFFFFFFFFFFFFFFF      AAA               
+F::::::::::::::::::::FI::::::::IF::::::::::::::::::::F     A:::A              
+F::::::::::::::::::::FI::::::::IF::::::::::::::::::::F    A:::::A             
+FF::::::FFFFFFFFF::::FII::::::IIFF::::::FFFFFFFFF::::F   A:::::::A            
+  F:::::F       FFFFFF  I::::I    F:::::F       FFFFFF  A:::::::::A           
+  F:::::F               I::::I    F:::::F              A:::::A:::::A          
+  F::::::FFFFFFFFFF     I::::I    F::::::FFFFFFFFFF   A:::::A A:::::A         
+  F:::::::::::::::F     I::::I    F:::::::::::::::F  A:::::A   A:::::A        
+  F:::::::::::::::F     I::::I    F:::::::::::::::F A:::::A     A:::::A       
+  F::::::FFFFFFFFFF     I::::I    F::::::FFFFFFFFFFA:::::AAAAAAAAA:::::A      
+  F:::::F               I::::I    F:::::F         A:::::::::::::::::::::A     
+  F:::::F               I::::I    F:::::F        A:::::AAAAAAAAAAAAA:::::A    
+FF:::::::FF           II::::::IIFF:::::::FF     A:::::A             A:::::A   
+F::::::::FF           I::::::::IF::::::::FF    A:::::A               A:::::A  
+F::::::::FF           I::::::::IF::::::::FF   A:::::A                 A:::::A 
+FFFFFFFFFFF           IIIIIIIIIIFFFFFFFFFFF  AAAAAAA                   AAAAAAA
+                        ''')
+    console_r.print(" Fédération Internationale de Football Association")
     console_r.rule(characters="-",style="bright_white")
 
 # home
