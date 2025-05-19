@@ -44,3 +44,6 @@ def create():
                     "|\t[2] [bright_magenta] CREATE[/bright_magenta] TEAMS\n"
                     "|\t[3] [bright_magenta] CREATE[/bright_magenta] PLAYERS\n"
                     "|\t[4] [bright_magenta] CREATE[/bright_magenta] PLAYERS STATS\n|\n| Please enter your option:")
+#version
+def run_version(var):
+    console_r.rule(f"[bold red]version SQLAlchemy: {var}", align="center")

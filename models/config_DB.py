@@ -3,6 +3,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy import text
 # rich
+import rich
 from rich.console import Console
 console_r = Console()
 # clear import
@@ -95,15 +96,8 @@ def create():
         player_stats.show_stats(engine, text)
         player_stats.create_stats(engine, text)
         player_stats.show_stats(engine, text)
-
-#version
-def run_version():
-    ui_text.tyler()
-    var = sqlalchemy.__version__
-    console_r.rule(f"[bold red]version SQLAlchemy: {var}", align="center")
 #     menu
 def menu():
-    ui_text.tyler()
     ui_text.texts_menu()
     option = int(input())
     # option = 3
@@ -124,9 +118,23 @@ def menu():
     elif option == 3:
         clear_terminal()
         create()
-    # show version
-    run_version()
+# bucle
+def break_or_continue():
+    option = input("Enter [B]reak or [C]ontinue: ")
+    if option.lower() == "b":
+        return False
+    elif option.lower() == "c":
+        return True
+    else:
+        print("Invalid option. Please enter B or C.")
+        return break_or_continue()
 # MAIN
-
 def test():
-    menu()
+    # menu()
+    while True:
+        clear_terminal()
+        ui_text.run_version(sqlalchemy.__version__)
+        # menu()
+        break
+        # if not break_or_continue():
+        #     break
