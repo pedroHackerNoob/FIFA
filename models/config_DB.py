@@ -29,7 +29,6 @@ def clear_terminal():
     ui_text.fifa_lxs()
 # SHOW
 def show():
-    clear_terminal()
     ui_text.show()
     option_show = int(input())
         # # Match
@@ -44,7 +43,6 @@ def show():
         # # Players stats
     elif option_show == 4:
         player_stats.show_stats(engine, text)
-
 # UPDATE
 def update():
     clear_terminal()
@@ -52,25 +50,16 @@ def update():
     option_update = int(input())
     #  Match
     if option_update ==1:
-        match_teams.show_match(engine, text)
         match_teams.update_match(engine, text)
-        match_teams.show_match(engine, text)
     # Team
     elif option_update ==2:
-        team_players.show_teams(engine, text)
         team_players.update_team(engine, text)
-        team_players.show_teams(engine, text)
     # Players
     elif option_update ==3:
-        match_teams.show_match(engine, text)
         player.update_player(engine, text)
-        player.show_players(engine, text)
     # # Plater Stats
     elif option_update ==4:
-        match_teams.show_match(engine, text)
         player_stats.update_stats(engine, text)
-        player_stats.show_stats(engine, text)
-
 # CREATE
 def create():
     ui_text.create()
@@ -113,10 +102,12 @@ def menu():
     # UPDATE
     elif option == 2:
         clear_terminal()
+        ui_text.update()
         update()
     # CREATE
     elif option == 3:
         clear_terminal()
+        ui_text.create()
         create()
 # bucle
 def break_or_continue():
@@ -141,7 +132,4 @@ def test():
                 break
 
     elif option == "banner":
-        match_teams.show_match(engine, text)
-        team_players.show_teams(engine, text)
-        player.show_players(engine, text)
-        player_stats.show_stats(engine, text)
+        team_players.update_team(engine, text)
