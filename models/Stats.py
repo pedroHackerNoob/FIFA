@@ -1,12 +1,16 @@
 # import models
-from views import texts_menu as textm
-# craete state
+from rich.console import Console
+from rich.table import Table
+
+console_r = Console()
+# show
 def show_stats(engine, text):
+    import time
+    from tqdm import tqdm
+    for i in tqdm(range(50)):
+        time.sleep(0.01)
     with engine.connect() as conn:
         stats_players = conn.execute(text("SELECT * FROM estadisticas"))
-        from rich.console import Console
-        from rich.table import Table
-        console_r = Console()
 
         table = Table(title="All stats", show_header=True, header_style="bold magenta", show_lines=True)
         table.add_column("Id_stats", style="bright_blue")
@@ -31,8 +35,7 @@ def show_stats(engine, text):
                 str(row[7])
             )
         console_r.print(table)
-
-#
+#create
 def create_stats(engine, text):
 
     with engine.connect() as conn:
@@ -73,18 +76,25 @@ def create_stats(engine, text):
 
         # ejecutar cambios
         conn.commit()
-
-
+# update
 def update_stats(engine, text):
+    show_stats(engine, text)
     with engine.connect() as conn:
-        id_jugador = int(input("| Enter id_player: "))
-        velocidad = int(input("| Enter velocity: "))
-        fuerza = int(input("| Enter strength: "))
-        tecnica = int(input("| Enter technique: "))
-        resistencia = int(input("| Enter resistence: "))
-        inteligencia = int(input("| Enter intelligence: "))
-        habilidades = input("| Enter skill:")
+        # id_estadistica = int(input("| Enter id stats: "))
+        # velocidad = int(input("| Enter velocity: "))
+        # fuerza = int(input("| Enter strength: "))
+        # tecnica = int(input("| Enter technique: "))
+        # resistencia = int(input("| Enter resistence: "))
+        # inteligencia = int(input("| Enter intelligence: "))
+        # habilidades = input("| Enter skill:")
 
+        id_estadistica = 2
+        velocidad = 2
+        fuerza = 2
+        tecnica = 2
+        resistencia = 2
+        inteligencia = 2
+        habilidades = "gh"
         conn.execute(text('''
                           UPDATE estadisticas 
                           SET velocidad = :velocidad, 
@@ -94,7 +104,7 @@ def update_stats(engine, text):
                               inteligencia = :inteligencia, 
                               habilidades = :habilidades
                               
-                              WHERE idJugador = :idJugador
+                              WHERE idEstadistica = :idEstadistica
                           '''),{
             "velocidad": velocidad,
             "fuerza": fuerza,
@@ -102,5 +112,8 @@ def update_stats(engine, text):
             "resistencia": resistencia,
             "inteligencia": inteligencia,
             "habilidades": habilidades,
-            "idJugador": id_jugador
+            "idEstadistica": id_estadistica
         })
+        conn.commit()
+
+    show_stats(engine, text)
