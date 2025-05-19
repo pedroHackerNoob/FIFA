@@ -12,15 +12,15 @@ def show_players(engine, text):
 def update_player(engine, text):
     textm.update()
     with engine.connect() as conn:
-        id_jugador = "5"
-        nombre = input("|nombre: ")
-        pais = "test"
-        deporte = "test"
-        posicion = "test"
-        rareza = "comun"
-        nivel = "0"
-        imagen = "retirado"
-        id_equipo = "2"
+        id_jugador = int(input("| Enter id_player: "))
+        nombre = input("| Enter name: ")
+        pais = input("| Enter country")
+        deporte = input("| Enter deport")
+        posicion = input("| position")
+        rareza = input("Enter rarely")
+        nivel = int(input("| Enter level:"))
+        imagen = input("| Enter image")
+        id_equipo = int(input("| Enter id_team:"))
         # prompt
         conn.execute(
             text("""
@@ -53,14 +53,14 @@ def update_player(engine, text):
 # create player
 def create_player(engine, text):
     with engine.connect() as conn:
-        nombre = "pollon"
-        pais = "test"
-        deporte = "test"
-        posicion = "test"
-        rareza = "comun"
-        nivel = "0"
-        imagen = "retirado"
-        id_equipo = "2"
+        nombre = input("| Enter name: ")
+        pais = input("| Enter country")
+        deporte = input("| Enter deport")
+        posicion = input("| position")
+        rareza = input("Enter rarely")
+        nivel = int(input("| Enter level:"))
+        imagen = input("| Enter image")
+        id_equipo = int(input("| Enter id_team:"))
 
         # create new player prompt
         conn.execute(text('''
