@@ -118,7 +118,7 @@ def break_or_continue():
 # MAIN
 def test():
     clear_terminal()
-    option = "banner"
+    option = "demo"
 
     if option == "demo":
         while True:
