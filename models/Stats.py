@@ -80,21 +80,14 @@ def create_stats(engine, text):
 def update_stats(engine, text):
     show_stats(engine, text)
     with engine.connect() as conn:
-        # id_estadistica = int(input("| Enter id stats: "))
-        # velocidad = int(input("| Enter velocity: "))
-        # fuerza = int(input("| Enter strength: "))
-        # tecnica = int(input("| Enter technique: "))
-        # resistencia = int(input("| Enter resistence: "))
-        # inteligencia = int(input("| Enter intelligence: "))
-        # habilidades = input("| Enter skill:")
+        id_estadistica = int(input("| Enter id stats: "))
+        velocidad = int(input("| Enter velocity: "))
+        fuerza = int(input("| Enter strength: "))
+        tecnica = int(input("| Enter technique: "))
+        resistencia = int(input("| Enter resistence: "))
+        inteligencia = int(input("| Enter intelligence: "))
+        habilidades = input("| Enter skill:")
 
-        id_estadistica = 2
-        velocidad = 2
-        fuerza = 2
-        tecnica = 2
-        resistencia = 2
-        inteligencia = 2
-        habilidades = "gh"
         conn.execute(text('''
                           UPDATE estadisticas 
                           SET velocidad = :velocidad, 
