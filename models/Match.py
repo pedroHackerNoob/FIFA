@@ -8,6 +8,10 @@ from rich.table import Table
 console_r = Console()
 # READ
 def show_match(engine, txt):
+    import time
+    from tqdm import tqdm
+    for i in tqdm(range(50)):
+        time.sleep(0.01)
     with engine.connect() as conn:
         match = conn.execute(txt("SELECT * FROM partido"))
 
@@ -24,6 +28,7 @@ def show_match(engine, txt):
         console_r.print(table)
 # UPDATE
 def update_match(engine, text):
+    show_match(engine, text)
     with engine.connect() as conn:
         id_partido = int(input("| Enter id_match: "))
         fecha = datetime
@@ -53,6 +58,7 @@ def update_match(engine, text):
 
         # ejecutar cambios
         conn.commit()
+    show_match(engine, text)
 # CREATE
 def create_match(engine, text):
     with engine.connect() as conn:
