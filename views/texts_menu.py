@@ -25,8 +25,8 @@ FFFFFFFFFFF           IIIIIIIIIIFFFFFFFFFFF  AAAAAAA                   AAAAAAA
 
 # home
 def texts_menu():
-    fifa_lxs()
     clear_terminal()
+    fifa_lxs()
     console_r.log("Home", style="bold magenta")
     console_r.rule("[bold magenta]Home[/bold magenta]", characters="=")
     console_r.print("|\n|\t"
