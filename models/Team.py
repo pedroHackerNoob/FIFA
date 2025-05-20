@@ -1,12 +1,9 @@
 from rich.console import Console
 from rich.table import Table
+from views import texts_menu as ui_text
 console_r = Console()
-from views import texts_menu as textm
 def show_teams(engine, text):
-    import time
-    from tqdm import tqdm
-    for i in tqdm(range(50)):
-        time.sleep(0.01)
+    ui_text.charge_bar()
     with engine.connect() as conn:
         team = conn.execute(text("SELECT * FROM equipo"))
 
@@ -17,7 +14,8 @@ def show_teams(engine, text):
         # impor_table.Table
         for row in team:
             table.add_row(str(row[0]), str(row[1]), str(row[2]))
-        console_r.print(table)
+        ui_text.table_print(table, "teams")
+
 # UPDATE
 def update_team(engine, text):
     show_teams(engine, text)
@@ -36,7 +34,7 @@ def update_team(engine, text):
         })
         # made change
         conn.commit()
-    show_teams(engine, text)
+        show_teams(engine, text)
 # CREATE
 def create_team(engine, text):
     show_teams(engine, text)

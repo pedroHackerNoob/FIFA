@@ -1,10 +1,8 @@
-from views import texts_menu as textm
+from views import texts_menu as ui_text
+
 #     Mostrar jugadores
 def show_players(engine, text):
-    import time
-    from tqdm import tqdm
-    for i in tqdm(range(50)):
-        time.sleep(0.01)
+    ui_text.charge_bar()
 
     with engine.connect() as conn:
         players = conn.execute(text("SELECT * FROM jugador"))
@@ -38,7 +36,7 @@ def show_players(engine, text):
                 str(row[7]),
                 str(row[8]),
             )
-        console_r.print(table)
+        ui_text.table_print(table, "players")
 # update plauer
 def update_player(engine, text):
     show_players(engine, text)

@@ -1,4 +1,4 @@
-
+from views import texts_menu as ui_text
 # Date time
 import datetime
 datetime = datetime.datetime.now()
@@ -8,10 +8,7 @@ from rich.table import Table
 console_r = Console()
 # READ
 def show_match(engine, txt):
-    import time
-    from tqdm import tqdm
-    for i in tqdm(range(50)):
-        time.sleep(0.01)
+    ui_text.charge_bar()
     with engine.connect() as conn:
         match = conn.execute(txt("SELECT * FROM partido"))
 
@@ -25,7 +22,8 @@ def show_match(engine, txt):
         # impor_table.Table
         for row in match:
             table.add_row(str(row[0]), str(row[1]), str(row[2]), str(row[3]), str(row[4]))
-        console_r.print(table)
+
+        ui_text.table_print(table, "matches")
 # UPDATE
 def update_match(engine, text):
     show_match(engine, text)

@@ -1,14 +1,12 @@
 # import models
 from rich.console import Console
 from rich.table import Table
+from views import texts_menu as ui_text
 
 console_r = Console()
 # show
 def show_stats(engine, text):
-    import time
-    from tqdm import tqdm
-    for i in tqdm(range(50)):
-        time.sleep(0.01)
+    ui_text.charge_bar()
     with engine.connect() as conn:
         stats_players = conn.execute(text("SELECT * FROM estadisticas"))
 
@@ -34,7 +32,7 @@ def show_stats(engine, text):
                 str(row[6]),
                 str(row[7])
             )
-        console_r.print(table)
+        ui_text.table_print(table, "players stats")
 #create
 def create_stats(engine, text):
 

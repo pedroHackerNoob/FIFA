@@ -7,9 +7,6 @@ import rich
 from rich.console import Console
 from rich.table import Table
 console_r = Console()
-# clear import
-import os
-import platform
 # models imports
 from models import Player as player
 from models import Stats as player_stats
@@ -23,10 +20,7 @@ password = "kali"
 port = "3306"
 engine = create_engine(f'mysql+pymysql://{user}:{password}@localhost:{port}/cartas_deportivas')
 # clear function
-def clear_terminal():
-    # Detecta el sistema operativo y ejecuta el comando adecuado
-    os.system('cls' if platform.system() == 'Windows' else 'clear')
-    ui_text.fifa_lxs()
+
 # SHOW
 def show():
     ui_text.show()
@@ -45,7 +39,6 @@ def show():
         player_stats.show_stats(engine, text)
 # UPDATE
 def update():
-    clear_terminal()
     ui_text.update()
     option_update = int(input())
     #  Match
@@ -62,7 +55,6 @@ def update():
         player_stats.update_stats(engine, text)
 # CREATE
 def create():
-    ui_text.create()
     create_option = int(input())
     # match
     if create_option ==1:
@@ -72,17 +64,12 @@ def create():
         team_players.create_team(engine, text)
     # Player
     elif create_option ==3:
-        player.show_players(engine, text)
         player.create_player(engine, text)
-        player.show_players(engine, text)
     # Stats
     elif create_option ==4:
-        player_stats.show_stats(engine, text)
         player_stats.create_stats(engine, text)
-        player_stats.show_stats(engine, text)
 #     menu
 def menu():
-
     ui_text.texts_menu()
     option = int(input())
     # option = 3
@@ -93,16 +80,13 @@ def menu():
         # SHOW
     # SHOW
     elif option == 1:
-        clear_terminal()
         show()
     # UPDATE
     elif option == 2:
-        clear_terminal()
         ui_text.update()
         update()
     # CREATE
     elif option == 3:
-        clear_terminal()
         ui_text.create()
         create()
 # bucle
@@ -117,16 +101,18 @@ def break_or_continue():
         return break_or_continue()
 # MAIN
 def test():
-    clear_terminal()
     option = "demo"
-
+    ui_text.clear_terminal()
     if option == "demo":
         while True:
-            clear_terminal()
             menu()
             if not break_or_continue():
                 ui_text.run_version(sqlalchemy.__version__)
                 break
 
-    elif option == "banner":
-        team_players.update_team(engine, text)
+    elif option == "ban":
+        player.show_players(engine,text)
+        # match_teams.show_match(engine,text)
+        # team_players.show_teams(engine,text)
+        # player_stats.show_stats(engine,text)
+        # team_players.show_teams(engine, text)
