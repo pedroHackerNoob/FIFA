@@ -128,4 +128,8 @@ def test():
 
         # player.show_players(Session)
         # player.update_player(Session)
-        player.create_player(Session)
+        # player.create_player(Session)
+
+        player_stats.show_stats(Session)
+        # player_stats.update_stats(Session)
+        # player_stats.create_stats(Session)
