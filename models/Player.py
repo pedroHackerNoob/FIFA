@@ -1,45 +1,54 @@
 from views import texts_menu as ui_text
-
+from rich.table import Table
+#
+from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, Integer, String
+Base = declarative_base()
+#
+class Player(Base):
+    __tablename__ = 'jugador'
+    idJugador = Column(Integer, primary_key=True)
+    nombre = Column(String)
+    pais = Column(String)
+    deporte = Column(String)
+    posicion = Column(String)
+    rareza = Column(String)
+    nivel = Column(Integer)
+    imagen = Column(String)
+    idEquipo = Column(Integer)
 #     Mostrar jugadores
-def show_players(engine, text):
+def show_players(Session):
     ui_text.charge_bar()
-
-    with engine.connect() as conn:
-        players = conn.execute(text("SELECT * FROM jugador"))
-
-        from rich.console import Console
-        from rich.table import Table
-        console_r = Console()
-
-        table = Table(title="All Players", show_header=True, header_style="bold magenta", show_lines=True)
-        table.add_column("Id_Player", style="bright_blue",justify="center")
-        table.add_column("name", style="cyan")
-        table.add_column("country", style="bright_white")
-        table.add_column("sport", style="green")
-        table.add_column("position", style="red")
-        table.add_column("rare", style="yellow")
-        table.add_column("level", style="magenta")
-        table.add_column("image", style="blue")
-        table.add_column("team_id", style="turquoise2", justify="center")
-
-
-        # impor_table.Table
-        for row in players:
-            table.add_row(
-                str(row[0]),
-                str(row[1]),
-                str(row[2]),
-                str(row[3]),
-                str(row[4]),
-                str(row[5]),
-                str(row[6]),
-                str(row[7]),
-                str(row[8]),
-            )
+    table = Table(title="All Players", show_header=True, header_style="bold magenta", show_lines=True)
+    table.add_column("Id_Player", style="bright_blue", justify="center")
+    table.add_column("name", style="cyan")
+    table.add_column("country", style="bright_white")
+    table.add_column("sport", style="green")
+    table.add_column("position", style="red")
+    table.add_column("rare", style="yellow")
+    table.add_column("level", style="magenta")
+    table.add_column("image", style="blue")
+    table.add_column("team_id", style="turquoise2", justify="center")
+    try:
+        with Session() as session:
+            players = session.query(Player).all()
+            for player in players:
+                table.add_row(
+                    str(player.idJugador),
+                    str(player.nombre),
+                    str(player.pais),
+                    str(player.deporte),
+                    str(player.posicion),
+                    str(player.rareza),
+                    str(player.nivel),
+                    str(player.imagen),
+                    str(player.idEquipo)
+                )
         ui_text.table_print(table, "players")
+    except Exception as e:
+        print(f"Error displaying players: {str(e)}")
 # update plauer
 def update_player(engine, text):
-    show_players(engine, text)
     with engine.connect() as conn:
         id_jugador = int(input("| Enter id_player: "))
         nombre = input("| Enter name: ")
