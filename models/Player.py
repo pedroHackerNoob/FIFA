@@ -97,3 +97,18 @@ def create_player(Session):
             show_players(Session)
     except Exception as e:
         print(f"Error creating player: {str(e)}")
+# Delete
+def delete_player(Session):
+    show_players(Session)
+    try:
+        id_player = int(input("| Enter id_player: "))
+        with Session() as session:
+            player = session.query(Player).filter(Player.idJugador == id_player).first()
+            if player:
+                session.delete(player)
+                session.commit()
+                show_players(Session)
+            else:
+                print(f"No player found with id {id_player}")
+    except Exception as e:
+        print(f"Error deleting player: {str(e)}")

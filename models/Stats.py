@@ -96,3 +96,18 @@ def create_stats(Session):
             show_stats(Session)
     except Exception as e:
         print(f"Error creating stats: {str(e)}")
+# Delete
+def delete_stats(Session):
+    show_stats(Session)
+    try:
+        id_stats = int(input("| Enter id stats: "))
+        with Session() as session:
+            stat = session.query(Stats).filter(Stats.idEstadistica == id_stats).first()
+            if stat:
+                session.delete(stat)
+                session.commit()
+                show_stats(Session)
+            else:
+                print(f"No stats found with id {id_stats}")
+    except Exception as e:
+        print(f"Error deleting stats: {str(e)}")

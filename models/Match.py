@@ -68,7 +68,6 @@ def update_match(Session):
                 print(f"No match found with id {id_partido}")
     except Exception as e:
         print(f"Error updating match: {str(e)}")
-
 # CREATE
 def create_match(Session):
     show_match(Session)
@@ -84,4 +83,19 @@ def create_match(Session):
             show_match(Session)
     except Exception as e:
         print(f"Error creating match: {str(e)}")
+# Delete
+def delete_match(Session):
+    show_match(Session)
+    try:
+        id_match = int(input("| Enter id_match: "))
+        with Session() as session:
+            match = session.query(Match).filter(Match.idPartido == id_match).first()
+            if match:
+                session.delete(match)
+                session.commit()
+                show_match(Session)
+            else:
+                print(f"No match found with id {id_match}")
+    except Exception as e:
+        print(f"Error deleting match: {str(e)}")
 
