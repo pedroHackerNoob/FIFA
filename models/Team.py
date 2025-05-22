@@ -37,10 +37,10 @@ def show_teams(Session):
 # UPDATE
 def update_team(Session):
     show_teams(Session)
-    id_team = int(input("| Enter id_team: "))
-    nombre = input("| Enter name: ")
-    pais = input("| Enter country: ")
     try:
+        id_team = int(input("| Enter id_team: "))
+        nombre = input("| Enter name: ")
+        pais = input("| Enter country: ")
         with Session() as session:
             team = session.query(Team).filter(Team.idEquipo == id_team).first()
             if team:
