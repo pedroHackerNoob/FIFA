@@ -1,3 +1,17 @@
+from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, Integer, String
+
+Base = declarative_base()
+
+class Match(Base):
+    __tablename__ = 'partido'
+
+    idPartido = Column(Integer, primary_key=True)
+    fecha = Column(String)
+    lugar = Column(String)
+    idEquipo1 = Column(Integer)
+    idEquipo2 = Column(Integer)
+
 from views import texts_menu as ui_text
 # Date time
 import datetime
@@ -7,23 +21,30 @@ from rich.console import Console
 from rich.table import Table
 console_r = Console()
 # READ
-def show_match(engine, txt):
-    ui_text.charge_bar()
-    with engine.connect() as conn:
-        match = conn.execute(txt("SELECT * FROM partido"))
-
+def show_match(select, Session, engine, txt):
+    try:
+        ui_text.charge_bar()
         table = Table(title="All matches", show_header=True, header_style="bold magenta", show_lines=True)
+        table.add_column("ID", style="bright_blue")
+        table.add_column("Date", style="cyan")
+        table.add_column("Place", style="bright_white")
+        table.add_column("Visitor Team ID", style="green", justify="center")
+        table.add_column("Local Team ID", style="red", justify="center")
 
-        table.add_column("ID_match", style="bright_blue")
-        table.add_column("date", style="cyan")
-        table.add_column("country", style="bright_white")
-        table.add_column("visitors ID", style="green", justify="center")
-        table.add_column("locals ID", style="red", justify="center")
-        # impor_table.Table
-        for row in match:
-            table.add_row(str(row[0]), str(row[1]), str(row[2]), str(row[3]), str(row[4]))
+        with Session() as session:
+            matches = session.query(Match).all()
+            for match in matches:
+                table.add_row(
+                    str(match.idPartido),
+                    str(match.fecha),
+                    str(match.lugar),
+                    str(match.idEquipo1),
+                    str(match.idEquipo2)
+                )
 
-        ui_text.table_print(table, "matches")
+            ui_text.table_print(table, "matches")
+    except Exception as e:
+        print(f"Error displaying matches: {str(e)}")
 # UPDATE
 def update_match(engine, text):
     show_match(engine, text)
