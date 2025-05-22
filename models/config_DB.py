@@ -118,10 +118,7 @@ def test():
                 break
 
     elif option == "ban":
-        # player.show_players(engine,text)
         # match_teams.show_match(select ,Session,engine,text)
         # match_teams.update_match(Session)
-        match_teams.create_match(Session)
-        # team_players.show_teams(engine,text)
-        # player_stats.show_stats(engine,text)
-        # team_players.show_teams(engine, text)
+        # match_teams.create_match(Session)
+        team_players.show_teams(Session)
