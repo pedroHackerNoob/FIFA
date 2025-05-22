@@ -47,12 +47,27 @@ def show_match(Session):
         print(f"Error displaying matches: {str(e)}")
 # UPDATE
 def update_match(Session):
-    show_match(Session)
-    id_partido = int(input("| Enter id_match: "))
-    fecha = datetime
-    lugar = input("| Enter place: ")
-    id_equipo1 = int(input("| Enter id_team visitors: "))
-    id_equipo2 = int(input("| Enter id_team locals: "))
+
+    try:
+        show_match(Session)
+        id_partido = int(input("| Enter id_match: "))
+        fecha = datetime
+        lugar = input("| Enter place: ")
+        id_equipo1 = int(input("| Enter id_team visitors: "))
+        id_equipo2 = int(input("| Enter id_team locals: "))
+        with Session() as session:
+            match = session.query(Match).filter(Match.idPartido == id_partido).first()
+            if match:
+                match.fecha = fecha
+                match.lugar = lugar
+                match.idEquipo1 = id_equipo1
+                match.idEquipo2 = id_equipo2
+                session.commit()
+                show_match(Session)
+            else:
+                print(f"No match found with id {id_partido}")
+    except Exception as e:
+        print(f"Error updating match: {str(e)}")
 
 # CREATE
 def create_match(engine, text):
