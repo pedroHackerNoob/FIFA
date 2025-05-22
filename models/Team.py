@@ -35,24 +35,25 @@ def show_teams(Session):
         print(f"Error displaying teams: {str(e)}")
 
 # UPDATE
-# def update_team(Session):
-#     show_teams(engine, text)
-#     with engine.connect() as conn:
-#         id_equipo = int(input("| Enter id_team: "))
-#         nombre = input("| Enter name: ")
-#         pais = input("| Enter country: ")
-#         conn.execute(text("""
-#                           UPDATE equipo
-#                           SET nombre = :nombre,
-#                               pais = :pais
-#                           WHERE idEquipo = :idEquipo"""),{
-#             "nombre": nombre,
-#             "pais": pais,
-#             "idEquipo": id_equipo
-#         })
-#         # made change
-#         conn.commit()
-#         show_teams(engine, text)
+def update_team(Session):
+    show_teams(Session)
+    id_team = int(input("| Enter id_team: "))
+    nombre = input("| Enter name: ")
+    pais = input("| Enter country: ")
+    try:
+        with Session() as session:
+            team = session.query(Team).filter(Team.idEquipo == id_team).first()
+            if team:
+                team.nombre = nombre
+                team.pais = pais
+                session.commit()
+                show_teams(Session)
+            else:
+                print(f"No team found with id {id_team}")
+            show_teams(Session)
+
+    except Exception as e:
+        print(f"Error updating team: {str(e)}")
 # CREATE
 # def create_team(Session):
 #     show_teams(engine, text)
