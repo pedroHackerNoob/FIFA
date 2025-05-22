@@ -48,47 +48,35 @@ def show_players(Session):
     except Exception as e:
         print(f"Error displaying players: {str(e)}")
 # update plauer
-def update_player(engine, text):
-    with engine.connect() as conn:
+def update_player(Session):
+    show_players(Session)
+    try:
         id_jugador = int(input("| Enter id_player: "))
         nombre = input("| Enter name: ")
-        pais = input("| Enter country")
+        pais = input("| Enter country: ")
         deporte = input("| Enter sport: ")
-        posicion = input("| Enter position")
+        posicion = input("| Enter position: ")
         rareza = input("| Enter rarely: ")
         nivel = int(input("| Enter level:"))
         imagen = input("| Enter image: ")
         id_equipo = int(input("| Enter id_team: "))
-        # prompt
-        conn.execute(
-            text("""
-                 UPDATE jugador
-                 SET nombre   = :nombre,
-                     pais     = :pais,
-                     deporte  = :deporte,
-                     posicion = :posicion,
-                     rareza   = :rareza,
-                     nivel    = :nivel,
-                     imagen   = :imagen,
-                     idEquipo = :idEquipo
-                 WHERE idJugador = :idJugador
-                 """),
-            [{
-                "nombre": nombre,
-                "pais": pais,
-                "deporte": deporte,
-                "posicion": posicion,
-                "rareza": rareza,
-                "nivel": nivel,
-                "imagen": imagen,
-                "idEquipo": id_equipo,
-                "idJugador": id_jugador
-            }]
-        )
-
-        # ejecutar cambios
-        conn.commit()
-    show_players(engine, text)
+        with Session() as session:
+            player = session.query(Player).filter(Player.idJugador == id_jugador).first()
+            if player:
+                player.nombre = nombre
+                player.pais = pais
+                player.deporte = deporte
+                player.posicion = posicion
+                player.rareza = rareza
+                player.nivel = nivel
+                player.imagen = imagen
+                player.idEquipo = id_equipo
+                session.commit()
+                show_players(Session)
+            else:
+                print(f"No player found with id {id_jugador}")
+    except Exception as e:
+        print(f"Error updating player: {str(e)}")
 # create player
 def create_player(engine, text):
     with engine.connect() as conn:

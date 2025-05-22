@@ -126,4 +126,5 @@ def test():
         # team_players.update_team(Session)
         # team_players.create_team(Session)
 
-        player.show_players(Session)
+        # player.show_players(Session)
+        player.update_player(Session)
