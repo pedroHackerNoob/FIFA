@@ -55,21 +55,15 @@ def update_team(Session):
     except Exception as e:
         print(f"Error updating team: {str(e)}")
 # CREATE
-# def create_team(Session):
-#     show_teams(engine, text)
-#     with engine.connect() as conn:
-#         nombre = input("| Enter name: ")
-#         pais = input("| Enter country: ")
-#
-#         conn.execute(text('''
-#                           INSERT INTO equipo (nombre, pais)
-#                              VALUES (:nombre,
-#                                      :pais)
-#                           '''),
-#                      {
-#             "nombre": nombre,
-#             "pais": pais
-#         })
-#         # made change
-#         conn.commit()
-#     show_teams(engine, text)
+def create_team(Session):
+    show_teams(Session)
+    try:
+        nombre = input("| Enter name: ")
+        pais = input("| Enter country: ")
+        with Session() as session:
+            new_team = Team(nombre=nombre, pais=pais)
+            session.add(new_team)
+            session.commit()
+            show_teams(Session)
+    except Exception as e:
+        print(f"Error creating team: {str(e)}")
