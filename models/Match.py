@@ -70,33 +70,18 @@ def update_match(Session):
         print(f"Error updating match: {str(e)}")
 
 # CREATE
-def create_match(engine, text):
-    show_match(engine, text)
-    print("| Enter date: ", datetime)
-    with engine.connect() as conn:
+def create_match(Session):
+    show_match(Session)
+    try:
         fecha = datetime
         lugar = input("| Enter place: ")
         id_equipo1 = int(input("| Enter id_team visitors: "))
         id_equipo2 = int(input("| Enter id_team locals: "))
+        with Session() as session:
+            new_match = Match(fecha=fecha, lugar=lugar, idEquipo1=id_equipo1, idEquipo2=id_equipo2)
+            session.add(new_match)
+            session.commit()
+            show_match(Session)
+    except Exception as e:
+        print(f"Error creating match: {str(e)}")
 
-        conn.execute(
-            text("""
-                 INSERT INTO partido (fecha,
-                                    lugar,
-                                    idEquipo1,
-                                    idEquipo2)
-                 VALUES (:fecha,
-                        :lugar,
-                        :idEquipo1,
-                        :idEquipo2)
-                 """),
-            {
-                "fecha": fecha,
-                "lugar": lugar,
-                "idEquipo1": id_equipo1,
-                "idEquipo2": id_equipo2
-            }
-        )
-        # made action
-        conn.commit()
-        show_match(engine, text)
