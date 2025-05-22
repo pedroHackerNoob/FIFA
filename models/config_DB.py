@@ -65,16 +65,16 @@ def create():
     create_option = int(input())
     # match
     if create_option ==1:
-        match_teams.create_match(engine, text)
+        match_teams.create_match(Session)
     # Team
     elif create_option ==2:
-        team_players.create_team(engine, text)
+        team_players.create_team(Session)
     # Player
     elif create_option ==3:
-        player.create_player(engine, text)
+        player.create_player(Session)
     # Stats
     elif create_option ==4:
-        player_stats.create_stats(engine, text)
+        player_stats.create_stats(Session)
 #     menu
 def menu():
     ui_text.texts_menu()
@@ -118,18 +118,18 @@ def test():
                 break
 
     elif option == "ban":
-        # match_teams.show_match(Session)
+        match_teams.show_match(Session)
         # match_teams.update_match(Session)
         # match_teams.create_match(Session)
 
-        # team_players.show_teams(Session)
+        team_players.show_teams(Session)
         # team_players.update_team(Session)
         # team_players.create_team(Session)
 
-        # player.show_players(Session)
+        player.show_players(Session)
         # player.update_player(Session)
         # player.create_player(Session)
 
-        # player_stats.show_stats(Session)
+        player_stats.show_stats(Session)
         # player_stats.update_stats(Session)
-        player_stats.create_stats(Session)
+        # player_stats.create_stats(Session)
