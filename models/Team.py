@@ -1,56 +1,74 @@
 from rich.console import Console
 from rich.table import Table
-from views import texts_menu as ui_text
 console_r = Console()
-def show_teams(engine, text):
-    ui_text.charge_bar()
-    with engine.connect() as conn:
-        team = conn.execute(text("SELECT * FROM equipo"))
+#
+from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, Integer, String
+from views import texts_menu as ui_text
+#
+Base = declarative_base()
+#
+class Team(Base):
+    __tablename__ = 'equipo'
+    idEquipo = Column(Integer, primary_key=True)
+    nombre = Column(String)
+    pais = Column(String)
 
+def show_teams(Session):
+    try:
+        ui_text.charge_bar()
         table = Table(title="All teams", show_header=True, header_style="bold magenta", show_lines=True)
         table.add_column("ID_team", style="bright_blue")
         table.add_column("name", style="cyan")
         table.add_column("country", style="bright_white")
-        # impor_table.Table
-        for row in team:
-            table.add_row(str(row[0]), str(row[1]), str(row[2]))
-        ui_text.table_print(table, "teams")
+
+        with Session() as session:
+            teams = session.query(Team).all()
+            for team in teams:
+                table.add_row(
+                    str(team.idEquipo),
+                    str(team.nombre),
+                    str(team.pais)
+                )
+            ui_text.table_print(table, "teams")
+    except Exception as e:
+        print(f"Error displaying teams: {str(e)}")
 
 # UPDATE
-def update_team(engine, text):
-    show_teams(engine, text)
-    with engine.connect() as conn:
-        id_equipo = int(input("| Enter id_team: "))
-        nombre = input("| Enter name: ")
-        pais = input("| Enter country: ")
-        conn.execute(text("""
-                          UPDATE equipo 
-                          SET nombre = :nombre,
-                              pais = :pais
-                          WHERE idEquipo = :idEquipo"""),{
-            "nombre": nombre,
-            "pais": pais,
-            "idEquipo": id_equipo
-        })
-        # made change
-        conn.commit()
-        show_teams(engine, text)
+# def update_team(Session):
+#     show_teams(engine, text)
+#     with engine.connect() as conn:
+#         id_equipo = int(input("| Enter id_team: "))
+#         nombre = input("| Enter name: ")
+#         pais = input("| Enter country: ")
+#         conn.execute(text("""
+#                           UPDATE equipo
+#                           SET nombre = :nombre,
+#                               pais = :pais
+#                           WHERE idEquipo = :idEquipo"""),{
+#             "nombre": nombre,
+#             "pais": pais,
+#             "idEquipo": id_equipo
+#         })
+#         # made change
+#         conn.commit()
+#         show_teams(engine, text)
 # CREATE
-def create_team(engine, text):
-    show_teams(engine, text)
-    with engine.connect() as conn:
-        nombre = input("| Enter name: ")
-        pais = input("| Enter country: ")
-
-        conn.execute(text('''
-                          INSERT INTO equipo (nombre, pais)
-                             VALUES (:nombre, 
-                                     :pais)
-                          '''),
-                     {
-            "nombre": nombre,
-            "pais": pais
-        })
-        # made change
-        conn.commit()
-    show_teams(engine, text)
+# def create_team(Session):
+#     show_teams(engine, text)
+#     with engine.connect() as conn:
+#         nombre = input("| Enter name: ")
+#         pais = input("| Enter country: ")
+#
+#         conn.execute(text('''
+#                           INSERT INTO equipo (nombre, pais)
+#                              VALUES (:nombre,
+#                                      :pais)
+#                           '''),
+#                      {
+#             "nombre": nombre,
+#             "pais": pais
+#         })
+#         # made change
+#         conn.commit()
+#     show_teams(engine, text)
