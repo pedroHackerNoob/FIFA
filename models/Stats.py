@@ -50,6 +50,32 @@ def show_stats(Session):
             ui_text.table_print(table, "players stats")
     except Exception as e:
         print(f"Error displaying stats: {str(e)}")
+# update
+def update_stats(Session):
+    show_stats(Session)
+    try:
+        id_estadistica = int(input("| Enter id stats: "))
+        velocidad = int(input("| Enter velocity: "))
+        fuerza = int(input("| Enter strength: "))
+        tecnica = int(input("| Enter technique: "))
+        resistencia = int(input("| Enter resistence: "))
+        inteligencia = int(input("| Enter intelligence: "))
+        habilidades = input("| Enter skill: ")
+        with Session() as session:
+            stat = session.query(Stats).filter(Stats.idEstadistica == id_estadistica).first()
+            if stat:
+                stat.velocidad = velocidad
+                stat.fuerza = fuerza
+                stat.tecnica = tecnica
+                stat.resistencia = resistencia
+                stat.inteligencia = inteligencia
+                stat.habilidades = habilidades
+                session.commit()
+                show_stats(Session)
+            else:
+                print(f"No stats found with id {id_estadistica}")
+    except Exception as e:
+        print(f"Error updating stats: {str(e)}")
 #create
 def create_stats(Session):
 
@@ -91,37 +117,3 @@ def create_stats(Session):
 
         # ejecutar cambios
         conn.commit()
-# update
-def update_stats(engine, text):
-    show_stats(engine, text)
-    with engine.connect() as conn:
-        id_estadistica = int(input("| Enter id stats: "))
-        velocidad = int(input("| Enter velocity: "))
-        fuerza = int(input("| Enter strength: "))
-        tecnica = int(input("| Enter technique: "))
-        resistencia = int(input("| Enter resistence: "))
-        inteligencia = int(input("| Enter intelligence: "))
-        habilidades = input("| Enter skill:")
-
-        conn.execute(text('''
-                          UPDATE estadisticas 
-                          SET velocidad = :velocidad, 
-                              fuerza =:fuerza, 
-                              tecnica = :tecnica, 
-                              resistencia = :resistencia, 
-                              inteligencia = :inteligencia, 
-                              habilidades = :habilidades
-                              
-                              WHERE idEstadistica = :idEstadistica
-                          '''),{
-            "velocidad": velocidad,
-            "fuerza": fuerza,
-            "tecnica": tecnica,
-            "resistencia": resistencia,
-            "inteligencia": inteligencia,
-            "habilidades": habilidades,
-            "idEstadistica": id_estadistica
-        })
-        conn.commit()
-
-    show_stats(engine, text)
