@@ -78,45 +78,22 @@ def update_player(Session):
     except Exception as e:
         print(f"Error updating player: {str(e)}")
 # create player
-def create_player(engine, text):
-    with engine.connect() as conn:
+def create_player(Session):
+    show_players(Session)
+    try:
         nombre = input("| Enter name: ")
         pais = input("| Enter country: ")
-        deporte = input("| Enter deport: ")
-        posicion = input("| position: ")
+        deporte = input("| Enter sport: ")
+        posicion = input("| Enter position: ")
         rareza = input("| Enter rarely: ")
         nivel = int(input("| Enter level: "))
-        imagen = input("| Enter image: " )
+        imagen = input("| Enter image: ")
         id_equipo = int(input("| Enter id_team: "))
 
-        # create new player prompt
-        conn.execute(text('''
-                          INSERT INTO jugador (nombre
-                                              ,pais,
-                                               deporte,
-                                               posicion,
-                                               rareza,
-                                               nivel,
-                                               imagen,
-                                               idEquipo) 
-                             VALUES ( :nombre, 
-                                      :pais, 
-                                      :deporte, 
-                                      :posicion, 
-                                      :rareza, 
-                                      :nivel, 
-                                      :imagen, 
-                                      :idEquipo )'''),
-                              {
-                                 "nombre": nombre,
-                                 "pais": pais,
-                                 "deporte": deporte,
-                                 "posicion": posicion,
-                                 "rareza": rareza,
-                                 "nivel": nivel,
-                                 "imagen": imagen,
-                                 "idEquipo": id_equipo,
-                              }
-                          )
-        # made change
-        conn.commit()
+        with Session() as session:
+            new_player = Player(nombre=nombre, pais=pais, deporte=deporte, posicion=posicion, rareza=rareza, nivel=nivel, imagen=imagen, idEquipo=id_equipo)
+            session.add(new_player)
+            session.commit()
+            show_players(Session)
+    except Exception as e:
+        print(f"Error creating player: {str(e)}")
