@@ -2,6 +2,11 @@
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy import text
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+from sqlalchemy.orm import sessionmaker
+session = Session()
+
 # rich
 import rich
 from rich.console import Console
@@ -19,6 +24,8 @@ user = "root"
 password = "kali"
 port = "3306"
 engine = create_engine(f'mysql+pymysql://{user}:{password}@localhost:{port}/cartas_deportivas')
+Session = sessionmaker(bind=engine)
+
 # clear function
 
 # SHOW
@@ -27,32 +34,32 @@ def show():
     option_show = int(input())
         # # Match
     if option_show == 1:
-        match_teams.show_match(engine, text)
+        match_teams.show_match(Session)
         # # Team
     elif option_show == 2:
-        team_players.show_teams(engine, text)
+        team_players.show_teams(Session)
         # # Players
     elif option_show == 3:
-        player.show_players(engine, text)
+        player.show_players(Session)
         # # Players stats
     elif option_show == 4:
-        player_stats.show_stats(engine, text)
+        player_stats.show_stats(Session)
 # UPDATE
 def update():
     ui_text.update()
     option_update = int(input())
     #  Match
     if option_update ==1:
-        match_teams.update_match(engine, text)
+        match_teams.update_match(Session)
     # Team
     elif option_update ==2:
-        team_players.update_team(engine, text)
+        team_players.update_team(Session)
     # Players
     elif option_update ==3:
-        player.update_player(engine, text)
+        player.update_player(Session)
     # # Plater Stats
     elif option_update ==4:
-        player_stats.update_stats(engine, text)
+        player_stats.update_stats(Session)
 # CREATE
 def create():
     create_option = int(input())
@@ -101,7 +108,7 @@ def break_or_continue():
         return break_or_continue()
 # MAIN
 def test():
-    option = "demo"
+    option = "ban"
     ui_text.clear_terminal()
     if option == "demo":
         while True:
@@ -111,8 +118,10 @@ def test():
                 break
 
     elif option == "ban":
-        player.show_players(engine,text)
-        # match_teams.show_match(engine,text)
+        # player.show_players(engine,text)
+        # match_teams.show_match(select ,Session,engine,text)
+        # match_teams.update_match(Session)
+        match_teams.create_match(Session)
         # team_players.show_teams(engine,text)
         # player_stats.show_stats(engine,text)
         # team_players.show_teams(engine, text)
