@@ -70,6 +70,21 @@ def create():
     # Stats
     elif create_option ==4:
         player_stats.create_stats(Session)
+# DELETE
+def delete():
+    delete_option = int(input())
+    # match
+    if delete_option ==1:
+        match_teams.delete_match(Session)
+    # Team
+    elif delete_option ==2:
+        team_players.delete_team(Session)
+    # Player
+    elif delete_option ==3:
+        player.delete_player(Session)
+    # Stats
+    elif delete_option ==4:
+        player_stats.delete_stats(Session)
 #     menu
 def menu():
     ui_text.texts_menu()
@@ -117,14 +132,14 @@ def test():
         # match_teams.update_match(Session)
         # match_teams.create_match(Session)
 
-        team_players.show_teams(Session)
+        # team_players.show_teams(Session)
         # team_players.update_team(Session)
         # team_players.create_team(Session)
 
-        player.show_players(Session)
+        # player.show_players(Session)
         # player.update_player(Session)
         # player.create_player(Session)
 
-        player_stats.show_stats(Session)
+        # player_stats.show_stats(Session)
         # player_stats.update_stats(Session)
         # player_stats.create_stats(Session)
