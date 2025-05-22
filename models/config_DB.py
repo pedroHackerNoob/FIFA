@@ -1,8 +1,6 @@
 # SQLAlchemy imports
 import sqlalchemy
 from sqlalchemy import create_engine
-from sqlalchemy import text
-from sqlalchemy import select
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
 session = Session()
@@ -25,9 +23,6 @@ password = "kali"
 port = "3306"
 engine = create_engine(f'mysql+pymysql://{user}:{password}@localhost:{port}/cartas_deportivas')
 Session = sessionmaker(bind=engine)
-
-# clear function
-
 # SHOW
 def show():
     ui_text.show()
