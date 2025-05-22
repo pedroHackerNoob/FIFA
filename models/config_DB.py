@@ -131,5 +131,5 @@ def test():
         # player.create_player(Session)
 
         # player_stats.show_stats(Session)
-        player_stats.update_stats(Session)
-        # player_stats.create_stats(Session)
+        # player_stats.update_stats(Session)
+        player_stats.create_stats(Session)

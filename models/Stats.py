@@ -55,6 +55,7 @@ def update_stats(Session):
     show_stats(Session)
     try:
         id_estadistica = int(input("| Enter id stats: "))
+        id_jugador = int(input("| Enter id player: "))
         velocidad = int(input("| Enter velocity: "))
         fuerza = int(input("| Enter strength: "))
         tecnica = int(input("| Enter technique: "))
@@ -64,6 +65,7 @@ def update_stats(Session):
         with Session() as session:
             stat = session.query(Stats).filter(Stats.idEstadistica == id_estadistica).first()
             if stat:
+                stat.idJugador = id_jugador
                 stat.velocidad = velocidad
                 stat.fuerza = fuerza
                 stat.tecnica = tecnica
@@ -78,42 +80,19 @@ def update_stats(Session):
         print(f"Error updating stats: {str(e)}")
 #create
 def create_stats(Session):
-
-    with engine.connect() as conn:
+    show_stats(Session)
+    try:
+        id_jugador = int(input("| Enter id player: "))
         velocidad = int(input("| Enter velocity: "))
         fuerza = int(input("| Enter strength: "))
         tecnica = int(input("| Enter technique: "))
         resistencia = int(input("| Enter resistence: "))
         inteligencia = int(input("| Enter intelligence: "))
-        habilidades = input("| Enter skill:")
-        # prompt
-        conn.execute(
-            text("""
-                 INSERT INTO estadisticas ( 
-                                           velocidad, 
-                                           fuerza, 
-                                           tecnica, 
-                                           resistencia, 
-                                           inteligencia, 
-                                           habilidades) 
-                 VALUES (  
-                          :velocidad, 
-                          :fuerza, 
-                          :tecnica, 
-                          :resistencia, 
-                          :inteligencia, 
-                          :habilidades)
-                 """),
-            [{
-
-                "velocidad": velocidad,
-                "fuerza": fuerza,
-                "tecnica": tecnica,
-                "resistencia": resistencia,
-                "inteligencia": inteligencia,
-                "habilidades": habilidades,
-            }]
-        )
-
-        # ejecutar cambios
-        conn.commit()
+        habilidades = input("| Enter skill: ")
+        with Session() as session:
+            new_stats = Stats(idJugador=id_jugador,velocidad=velocidad, fuerza=fuerza, tecnica=tecnica, resistencia=resistencia, inteligencia=inteligencia, habilidades=habilidades)
+            session.add(new_stats)
+            session.commit()
+            show_stats(Session)
+    except Exception as e:
+        print(f"Error creating stats: {str(e)}")
