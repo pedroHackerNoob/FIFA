@@ -72,14 +72,14 @@ def create_team(Session):
 def delete_team(Session):
     show_teams(Session)
     try:
-        id_team = int(input("| Enter id_team: "))
+        id_equipo = int(input("| Enter id_team: "))
         with Session() as session:
-            team = session.query(Team).filter(Team.idEquipo == id_team).first()
+            team = session.query(Team).filter(Team.idEquipo == id_equipo).first()
             if team:
                 session.delete(team)
                 session.commit()
                 show_teams(Session)
             else:
-                print(f"No team found with id {id_team}")
+                print(f"No team found with id {id_equipo}")
     except Exception as e:
         print(f"Error deleting team: {str(e)}")
