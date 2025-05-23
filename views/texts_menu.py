@@ -33,7 +33,7 @@ def texts_menu():
                     "[1] [dodger_blue2]SHOW[/dodger_blue2]\n|\t"
                     "[2] [bright_yellow]UPDATE[/bright_yellow]\n|\t"
                     "[3] [bright_magenta]CREATE[/bright_magenta]\n|\t"
-                    "[4] Exit\n|\n"
+                    "[4] [bright_red]DELETE[/bright_red]\n|\n"
                     "| Please enter your option:")
 # SHOW
 def show():
@@ -64,6 +64,16 @@ def create():
                     "|\t[2] [bright_magenta] CREATE[/bright_magenta] TEAMS\n"
                     "|\t[3] [bright_magenta] CREATE[/bright_magenta] PLAYERS\n"
                     "|\t[4] [bright_magenta] CREATE[/bright_magenta] PLAYERS STATS\n|\n| Please enter your option:")
+# Delete
+def delete():
+    console_r.log("DELETE", style="bright_red")
+    console_r.rule("[bright_red]DELETE",characters="=")
+    console_r.print("|\n"
+                    "|\t[1] [bright_red] DELETE[/bright_red] MATCHES\n"
+                    "|\t[2] [bright_red] DELETE[/bright_red] TEAMS\n"
+                    "|\t[3] [bright_red] DELETE[/bright_red] PLAYERS\n"
+                    "|\t[4] [bright_red] DELETE[/bright_red] PLAYERS STATS\n|\n| Please enter your option:")
+
 # clear
 def clear_terminal():
     # Detecta el sistema operativo y ejecuta el comando adecuado

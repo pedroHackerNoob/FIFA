@@ -106,6 +106,9 @@ def menu():
     elif option == 3:
         ui_text.create()
         create()
+    elif option == 4:
+        ui_text.delete()
+        delete()
 # bucle
 def break_or_continue():
     option = console_r.input("[black on bright_yellow]Enter [B]reak or [C]ontinue: ")
@@ -118,7 +121,7 @@ def break_or_continue():
         return break_or_continue()
 # MAIN
 def test():
-    option = "ban"
+    option = "demo"
     ui_text.clear_terminal()
     if option == "demo":
         while True:
