@@ -131,10 +131,10 @@ def test():
                 break
 
     elif option == "ban":
-        match_teams.show_match(Session)
+        # match_teams.show_match(Session)
         # match_teams.update_match(Session)
         # match_teams.create_match(Session)
-
+        ui_text.delete()
         # team_players.show_teams(Session)
         # team_players.update_team(Session)
         # team_players.create_team(Session)

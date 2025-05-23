@@ -68,6 +68,8 @@ def create():
 def delete():
     console_r.log("DELETE", style="bright_red")
     console_r.rule("[bright_red]DELETE",characters="=")
+    console_r.print("[red1 on yellow1]Security step!:[/red1 on yellow1]\n"
+                    "Step1 & final: you have to delete all Relational from the table before deleting it.")
     console_r.print("|\n"
                     "|\t[1] [bright_red] DELETE[/bright_red] MATCHES\n"
                     "|\t[2] [bright_red] DELETE[/bright_red] TEAMS\n"
